@@ -2,7 +2,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 const Header = () => {
 
-    const loggedUserId ="X09557262932807yqdsaljdhalhak"
+    const loggedUserId ="0x95...0cc"
   return (
       <div className="flex flex-row items-center justify-between p-3">
         <div className="">
@@ -20,7 +20,7 @@ const Header = () => {
                 <img src="/images/greenDot.png"/>
             </div>
 
-            <p className="text-[#898989] bg-[#E1E1E1] p-1 rounded-lg">{loggedUserId}</p>
+            <p className="text-[#898989] bg-[#E1E1E1] p-2 rounded-lg">{loggedUserId}</p>
             <button>
             <FaUser color="#E1E1E1" size={28}/>
 

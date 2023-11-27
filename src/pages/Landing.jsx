@@ -1,5 +1,5 @@
 import CurrencyPairs from "../components/Landing/CurrencyPairs";
-import Header from "../components/Landing/Header";
+import Header from "../components/Header";
 import MiddleLogo from "../components/Landing/MiddleLogo";
 
 const Landing = () => {
