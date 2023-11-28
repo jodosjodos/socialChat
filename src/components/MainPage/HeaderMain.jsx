@@ -7,7 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 const HeaderMain = ({ children }) => {
-  const [sidebarOpened, setSidebarOpened] = useState(true)
+  const [sidebarOpened, setSidebarOpened] = useState(false)
   const loggedUserId = "0x95...0cc";
   
 
@@ -62,10 +62,12 @@ const HeaderMain = ({ children }) => {
           </div>
           <div className="flex flex-col gap-3">
       
-            <Link to='/profile'  className="flex gap-3 justify-center  bg-green-700 py-[8.5px] rounded-md items-center ">
+          <Link to='/profile' className="flex gap-3 justify-center  bg-green-700 py-[8.5px] rounded-md items-center ">
+            
           <FaUser color="white" size={25} />
               <p className="text-white">
-            {loggedUserId}
+              {loggedUserId}
+     
         </p>
 
      
