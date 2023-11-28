@@ -1,15 +1,21 @@
-import Header from "../components/Header";
-import {  FaRegEdit } from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
 import { userProfile1 } from "../data/user";
 import { BsTwitterX, BsDiscord } from "react-icons/bs";
-import { Switch } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import Switcher4 from "../components/Swicher4";
+import HeaderMain from "../components/MainPage/HeaderMain";
 
 function Profile() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-16 dark:bg-[#171717]">
       <div>
-        <Header />
+        <HeaderMain>
+          <img
+            className="object-cover"
+            src="/images/logoSmall.png"
+            alt="logo"
+          />
+        </HeaderMain>
       </div>
       <div className="flex flex-col justify-center gap-5">
         <h1 className="text-[#A6A6A6] font-bold text-4xl self-center">
@@ -78,28 +84,36 @@ function Profile() {
             </div>
           ))}
         </div>
-        <FaRegEdit color="#E1E1E1" size={45}  className="self-center"/>
+        <FaRegEdit color="#E1E1E1" size={45} className="self-center" />
       </div>
       <div className="flex flex-col">
         <h1 className="text-[#A6A6A6] font-bold text-4xl self-center ">
           Settings
         </h1>
         <div className="flex flex-col gap-4 justify-center">
-          <div className="flex flex-row justify-evenly text-2xl">
-            <p>Show social connections? </p>
-          <Switch color="green" defaultChecked/>
+          <div className="flex flex-row justify-evenly items-center">
+            <p className="text-[#898989] text-2xl self-start">
+              Show social connections?{" "}
+            </p>
+            <Switcher4 checked={true} />
           </div>
-          <div>
-            <p>Show top comment on your mini-profile?</p>
-            <Switch color="green" defaultChecked />
+          <div className="flex flex-row justify-evenly items-center">
+            <p className="text-[#898989] text-2xl self-start">
+              Show top comment on your mini-profile?
+            </p>
+            <Switcher4 checked={true} />
           </div>
-          <div>
-            <p>Show badges on mini-profile? </p>
-            <Switch color="green" defaultChecked />
+          <div className="flex flex-row justify-evenly items-center">
+            <p className="text-[#898989] text-2xl">
+              Show badges on mini-profile?{" "}
+            </p>
+            <Switcher4 checked={true} />
           </div>
-          <div>
-            <p>Show connected wallet address? (Disabled by default) </p>
-            <Switch color="green" />
+          <div className="flex flex-row justify-evenly items-center">
+            <p className="text-[#898989] text-2xl">
+              Show connected wallet address? (Disabled by default){" "}
+            </p>
+            <Switcher4 checked={false} />
           </div>
         </div>
       </div>
