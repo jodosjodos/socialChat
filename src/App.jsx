@@ -6,11 +6,13 @@ import { useState } from "react";
 import { IoMdClose, IoMdLogOut, IoMdSearch } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 
+
 function App() {
 
   return (
+
     <>
-      <div>
+      <div className="dark:bg-[#171717]">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing  />}></Route>

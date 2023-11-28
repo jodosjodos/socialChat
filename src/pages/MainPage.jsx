@@ -5,7 +5,7 @@ import HeaderMain from "../components/MainPage/HeaderMain";
 const MainPage = ({sidebarOpened ,setSidebarOpened}) => {
   return (
     <div>
-      <div className="flex w-full  flex-col gap-5 py-5">
+      <div className="flex w-full  flex-col gap-5 py-5 dark:bg-[#171717]">
         <div >
           <HeaderMain > <h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
         </div>

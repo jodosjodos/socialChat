@@ -6,7 +6,7 @@ import HeaderMain from "../components/MainPage/HeaderMain";
 const Landing = ({sidebarOpened ,setSidebarOpened}) => {
   return (
     <div>
-      <div className="flex flex-col gap-12 mb-12">
+      <div className="flex flex-col gap-12 pb-12 dark:bg-[#171717]">
         <div>
           <HeaderMain  > <img className="object-cover" src="/images/logoSmall.png" alt="logo" /></HeaderMain>
         </div>
