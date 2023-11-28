@@ -78,9 +78,37 @@ export const userProfile = {
       image: "/images/badge4.png",
     },
   ],
-  topComment: " \" probably  a rug but I opend , send it  \" ",
+  topComment: ' " probably  a rug but I opend , send it  " ',
   views: "365",
   pair: "$GROK 14/11/2023  ",
   discordUsernam: "Traderrrr69",
   xUsername: "TopTrader69",
+};
+
+export const userProfile1 = {
+  image: "/images/profile1Big.png",
+  name: "Traderx69",
+  votes: "1034",
+  comments: "125",
+  discordUsernam: "Traderrrr69",
+  xUsername: "TopTrader69",
+  badges: [
+    {
+      id: 1,
+      image: "/images/badge1Big.png",
+    },
+    {
+      id: 2,
+      image: "/images/badge2Big.png",
+    },
+    {
+      id: 3,
+      image: "/images/badge3Big.png",
+    },
+
+    {
+      id: 4,
+      image: "/images/badge4Big.png",
+    },
+  ],
 };

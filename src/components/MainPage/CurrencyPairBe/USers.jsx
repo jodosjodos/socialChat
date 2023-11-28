@@ -6,7 +6,7 @@ import { useState } from "react";
 function USers() {
   const [isHovered, setIsHovered] = useState({id:'',hovered:false});
 
-  //  use margin for solution for making user div to  be fit to image and time div
+  //  use margin for solution for making user div to  be fit to image and time divv
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] ">
       <div className="flex flex-col gap-12">
@@ -46,7 +46,7 @@ function USers() {
               {userProfile.badges.map((badge) => (
                 <div
                   key={badge.id}
-                  className="bg-[#00FF57] px-3 py-2 rounded-lg"
+                  className={` ${badge.id == 4 ?"bg-[#ffe335]":"bg-[#00FF57]"} px-3 py-2 rounded-lg`}
                 >
                   <img src={badge.image} alt="badge img" />
                 </div>
