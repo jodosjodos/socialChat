@@ -3,10 +3,10 @@ import { timeChanges } from "../../../data/timeChange";
 import { usersWithVotes } from "../../../data/user";
 
 const CurrencyPairBeingUsed = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered,setIsHovered]=useState({id:'',hovered:false})
 
   const height = "15m";
-
+  console.log('is')
   //  use margin to adjust  border to fit similar to image and user
   return (
     <div className="flex flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
@@ -57,57 +57,44 @@ const CurrencyPairBeingUsed = () => {
           {height}
         </p>
       </div>
-      <div className="flex flex-row gap-1 ">
-        {timeChanges.map((timeChange) => (
-          <div
-            key={timeChange.id}
-            className="flex flex-col items-center justify-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div className="hover:cursor-pointer">
-              <img
-                src={
-                  timeChange.isRight
-                    ? "/images/timeGreen.png"
-                    : "/images/timeRed.png"
-                }
-                alt=""
-              />
-            </div>
-            <p className="  text-[#898989]  font-bold text-2xl  ">
-              {timeChange.time}
-            </p>
-          </div>
-        ))}
-      </div>
-      {isHovered && (
-        <div className="flex flex-col gap-8 bg-white border-4 w-[30%] rounded-2xl  p-5 absolute bottom-44 right-24">
-          {usersWithVotes.map((userWithVote) => (
-            <div
-              key={userWithVote.id}
-              className="flex flex-row items-center  gap-8"
-            >
-              <div>
-                <img src={userWithVote.profile} alt=" user profile" />
-              </div>
-              <div>
-                <div className="flex flex-row gap-2 items-center">
-                  <p className="text-[#898989] font-bold text-xl">
-                    {userWithVote.name}{" "}
-                  </p>
-                  <p className="text-[#00FF57] font-semibold">
-                    {userWithVote.votes} upVotes
-                  </p>
+      <div className="flex  w-full flex-row gap-1 ">
+      {timeChanges.map((timeChange) => (
+        <div
+          key={timeChange.id}
+          className="flex flex-col items-center justify-center relative"
+          onMouseEnter={() => setIsHovered({ id: timeChange.id, hovered: true })}
+          onMouseLeave={() => setIsHovered({ id: timeChange.id, hovered: false })}
+        >
+          {isHovered?.id === timeChange.id && isHovered.hovered && (
+            <div className="flex flex-col gap-8 bg-white md:w-[400px] border-4 rounded-2xl p-5 absolute bottom-44">
+              {usersWithVotes.map((userWithVote) => (
+                <div key={userWithVote.id} className="flex flex-row  w-fit items-center gap-[13px]">
+                  <div>
+                    <img src={userWithVote.profile} alt="user profile" className="w-[49px] h-[49px]" />
+                  </div>
+                  <div>
+                    <div className="flex flex-row gap-2 items-center text-[15px]">
+                      <p className="text-[#898989] font-bold ">{userWithVote.name} </p>
+                      <p className="text-[#00FF57] font-semibold ">{userWithVote.votes} upVotes</p>
+                    </div>
+                    <p className="text-[#898989] semi-bold text-[15px]">{userWithVote.msg}</p>
+                  </div>
                 </div>
-                <p className="text-[#898989] semi-bold text-xl">
-                  {userWithVote.msg}
-                </p>
-              </div>
+              ))}
             </div>
-          ))}
+          )}
+
+          <div className="hover:cursor-pointer">
+            <img
+              src={timeChange.isRight ? "/images/timeGreen.png" : "/images/timeRed.png"}
+              alt=""
+            />
+          </div>
+          <p className="text-[#898989] font-bold text-2xl">{timeChange.time}</p>
         </div>
-      )}
+      ))}
+    </div>
+
     </div>
   );
 };
