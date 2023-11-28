@@ -5,11 +5,11 @@ import HeaderMain from "../components/MainPage/HeaderMain";
 const MainPage = () => {
   return (
     <div>
-      <div className="flex flex-col gap-5 py-5">
+      <div className="flex w-full  flex-col gap-5 py-5">
         <div >
-          <HeaderMain />
+          <HeaderMain > <h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
         </div>
-        <div className="px-32 ">
+        <div className="lg:px-32 w-full overflow-x-hidden md:px-25 px-3 ">
           <CurrencyPairBeingUsed />
         </div>
         <div>

@@ -1,13 +1,17 @@
 import { IoMdSearch } from "react-icons/io";
+
+import { CgMenuRightAlt } from "react-icons/cg";
+
+
 import { FaUser } from "react-icons/fa";
-const HeaderMain = () => {
+const HeaderMain = ({children}) => {
   const loggedUserId = "0x95...0cc";
   return (
-    <div className="flex flex-row items-center justify-between p-5">
+    <div className="flex top-0 left-0 right-0 flex-row items-center justify-between md:p-5 p-2 w-full">
       <div className="">
-        <h1 className="text-[#E1E1E1] font-extrabold text-4xl">Chatr</h1>
+       {children}
       </div>
-      <div className="flex flex-row items-center gap-3">
+      <div className="md:flex hidden flex-row items-center gap-3">
         <input
           type="text"
           name="search"
@@ -17,7 +21,7 @@ const HeaderMain = () => {
           <IoMdSearch color="#E1E1E1" size={34} />
         </button>
       </div>
-      <div className="flex flex-row gap-3 items-center">
+      <div className="md:flex  hidden flex-row gap-3 items-center">
         <div>
           <img src="/images/greenDot.png" />
         </div>
@@ -28,6 +32,10 @@ const HeaderMain = () => {
         <button>
           <FaUser color="#E1E1E1" size={28} />
         </button>
+      </div>
+      <div className="md:hidden block">
+      <CgMenuRightAlt size={34} />
+
       </div>
     </div>
   );
