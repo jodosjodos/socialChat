@@ -19,12 +19,12 @@ console.log(checked);
             className="sr-only"
           />
           <div
-            className={`box block h-8 w-14 rounded-full ${
+            className={`box block md:h-8 md:w-14 h-5 w-8 rounded-full ${
               isChecked ? "bg-green-500" : "bg-red-500"
             }`}
           ></div>
           <div
-            className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
+            className={`absolute left-1 top-1 flex md:h-6 md:w-6 h-3 w-3  items-center justify-center rounded-full bg-white transition ${
               isChecked ? "translate-x-full" : ""
             }`}
           ></div>

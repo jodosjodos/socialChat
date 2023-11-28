@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const loggedUserId = "0x95...0cc";
   return (
-    <div className="flex flex-row items-center justify-between p-3">
+    <div className="flex flex-row items-center justify-between p-3 dark:bg-[#171717]">
       <Link className="" to="/main">
         <img className="object-cover" src="/images/logoSmall.png" alt="logo" />
       </Link>

@@ -1,6 +1,6 @@
 const CurrencyPairs = () => {
   return (
-    <div className="flex flex-row gap-3 items-center justify-around">
+    <div className="flex md:flex-row flex-col gap-3 items-center justify-around">
       <div className="flex flex-col gap-2 justify-center items-center ">
         <h1 className="text-[#898989] text-2xl">Daily Gainers</h1>
         <div className=" border-2 rounded-xl flex flex-col gap-8 border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020]">
