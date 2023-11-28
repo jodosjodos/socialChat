@@ -39,10 +39,7 @@ const HeaderMain = ({children}) => {
       <CgMenuRightAlt size={34} />
 
       </div>
-      <div className="md:hidden block">
-      <CgMenuRightAlt size={34} />
 
-      </div>
     </div>
   );
 };
