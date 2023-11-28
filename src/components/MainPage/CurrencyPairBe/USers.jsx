@@ -18,12 +18,12 @@ function USers() {
             <div className="flex flex-row gap-12  justify-between items-center">
               <div
                 className="hover:cursor-pointer"
-                onMouseEnter={() => user.id === 4 ? setIsHovered(true) : setIsHovered(false)}
+                onMouseEnter={() =>
+                  user.id === 4 ? setIsHovered(true) : setIsHovered(false)
+                }
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <img 
-              
-                src={user.profile} alt="user profile" />
+                <img src={user.profile} alt="user profile" />
               </div>
               <div className="flex flex-col">
                 <div className="flex flex-row gap-2 items-center">
