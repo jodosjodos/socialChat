@@ -1,10 +1,12 @@
 import { IoMdSearch } from "react-icons/io";
 
 function MiddleLogo() {
+  const savedTheme = localStorage.getItem("theme");
+  const isDarkTheme = savedTheme === "dark";
   return (
     <div className="flex flex-col items-center justify-center gap-3">
       <div>
-        <img src="/images/logoBigLight.png" alt="logo" />
+        <img src={`${isDarkTheme ? "images/logoBigLight.png" : "images/logoBigLight.png"}`} alt="logo" />
       </div>
       <div>
         <h1 className="text-[#898989] font-bold text-2xl">Welcome to Chatr. Please input a token address to get started.</h1>
@@ -13,10 +15,10 @@ function MiddleLogo() {
         <input
           type="text"
           name="search"
-          className="bg-[#E1E1E1] rounded-3xl outline-none px-3 w-[600px] h-[50px]"
+          className="bg-[#E1E1E1] rounded-3xl outline-none px-3 w-[600px] h-[50px] dark:bg-[#898989]"
         />
         <button className="font-bold">
-          <IoMdSearch color="#E1E1E1" size={38} />
+          <IoMdSearch color={`${isDarkTheme ? "#898989" : "#E1E1E1"}`} size={38} />
         </button>
       </div>
     </div>

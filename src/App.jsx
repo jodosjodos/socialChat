@@ -3,10 +3,12 @@ import Landing from "./pages/Landing";
 import MainPage from "./pages/MainPage";
 import Profile from "./pages/Profile";
 
+
 function App() {
   return (
+
     <>
-      <div>
+      <div className="dark:bg-[#171717]">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing/>}></Route>
