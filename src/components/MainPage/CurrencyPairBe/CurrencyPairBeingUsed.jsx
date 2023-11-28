@@ -9,19 +9,20 @@ const CurrencyPairBeingUsed = () => {
   console.log('is')
   //  use margin to adjust  border to fit similar to image and user
   return (
-    <div className="flex flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
-      <div className="flex flex-row justify-stretch gap-48 items-center">
-        <div className="flex flex-col items-center">
+    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
+        <div className="flex flex-col min-w-fit w-full  items-center">
           <h1 className="text-[#454545] font-semibold self-start">
             TOKEN DETAILS
           </h1>
-          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
+          <p className="bg-[#E1E1E1] text-[#898989] w-full md:min-w-fit py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
             GROK/USD CA: 0x839...02d5 PAIR: 0x69...82a2{" "}
           </p>
         </div>
+        <div className="flex md:flex-row md:gap-3 w-full md:text-[15px] text-[13px]  justify-between flex-1 px-2">
         <div className="flex flex-col items-center">
-          <h1 className="text-[#454545] font-semibold">MCAP</h1>
-          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
+          <h1 className="text-[#454545] font-semibold md:text-[15px]  ">MCAP</h1>
+          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5  rounded-2xl  font-bold hover:cursor-pointer">
             48.13M
           </p>
         </div>
@@ -43,6 +44,8 @@ const CurrencyPairBeingUsed = () => {
             12.8K
           </p>
         </div>
+        </div>
+ 
       </div>
       <div>
         <img
@@ -51,22 +54,23 @@ const CurrencyPairBeingUsed = () => {
           className="bg-cover "
         />
       </div>
-      <div className="flex flex-row items-center justify-center gap-5">
-        <p className="text-[#898989] font-semibold text-3xl">Highlights</p>
-        <p className="bg-[#E1E1E1] px-6 py-2 text-[#898989]  font-semibold  rounded-2xl text-2xl">
+      <div className="flex flex-row items-center md:gap-5 md:justify-start justify-between">
+        <p className="text-[#898989] font-semibold md:text-2xl text-xl">Highlights</p>
+        <p className="bg-[#E1E1E1] px-6 py-2 text-[#898989]  font-semibold  rounded-2xl ">
           {height}
         </p>
       </div>
-      <div className="flex  w-full flex-row gap-1 ">
-      {timeChanges.map((timeChange) => (
+      <div className="flex flex-row gap-1 relative w-full">
+        <div className="overflow-x-scroll flex flex-row">
+        {timeChanges.map((timeChange) => (
         <div
           key={timeChange.id}
-          className="flex flex-col items-center justify-center relative"
+          className="flex flex-col  items-center justify-center "
           onMouseEnter={() => setIsHovered({ id: timeChange.id, hovered: true })}
           onMouseLeave={() => setIsHovered({ id: timeChange.id, hovered: false })}
         >
           {isHovered?.id === timeChange.id && isHovered.hovered && (
-            <div className="flex flex-col gap-8 bg-white md:w-[400px] border-4 rounded-2xl p-5 absolute bottom-44">
+            <div className="flex flex-col gap-8 bg-white min-w-max border-4 rounded-2xl p-5 absolute bottom-3 z-[1000]">
               {usersWithVotes.map((userWithVote) => (
                 <div key={userWithVote.id} className="flex flex-row  w-fit items-center gap-[13px]">
                   <div>
@@ -84,15 +88,17 @@ const CurrencyPairBeingUsed = () => {
             </div>
           )}
 
-          <div className="hover:cursor-pointer">
+          <div className="hover:cursor-pointer ">
             <img
               src={timeChange.isRight ? "/images/timeGreen.png" : "/images/timeRed.png"}
               alt=""
             />
           </div>
-          <p className="text-[#898989] font-bold text-2xl">{timeChange.time}</p>
+          <p className="text-[#898989] font-bold lg:text-2xl md:text-xl text-sm">{timeChange.time}</p>
         </div>
       ))}
+        </div>
+  
     </div>
 
     </div>

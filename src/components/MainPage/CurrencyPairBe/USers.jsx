@@ -1,74 +1,42 @@
 import { FaReply } from "react-icons/fa";
 import { BsTwitterX, BsDiscord } from "react-icons/bs";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa6";
-import { userProfile, users } from "../../../data/user";
+import { userProfile, users, usersWithVotes } from "../../../data/user";
 import { useState } from "react";
 function USers() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState({id:'',hovered:false});
 
   //  use margin for solution for making user div to  be fit to image and time divv
   return (
-    <div className="flex flex-col gap-5  mr-60 ml-32 rounded-2xl p-5 bg-[#E1E1E1] ">
+    <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] ">
       <div className="flex flex-col gap-12">
         {users.map((user) => (
           <div
             key={user.id}
-            className="flex flex-row items-center justify-between"
+            className="flex flex-row relative  items-center justify-between"
           >
-            <div className="flex flex-row gap-12  justify-between items-center">
+
+            <div className="flex flex-row md:gap-10 gap-3 justify-between items-center">
+ 
               <div
                 className="hover:cursor-pointer"
-                onMouseEnter={() =>
-                  user.id === 4 ? setIsHovered(true) : setIsHovered(false)
-                }
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() =>  setIsHovered({id:user.id,hovered:true})}
+                onMouseLeave={() => setIsHovered({id:'',hovered:false})}
               >
-                <img src={user.profile} alt="user profile" />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex flex-row gap-2 items-center">
-                  <h1 className="text-[#898989] font-bold text-xl">
-                    {user.name}
-                  </h1>
-                  <p className="text-[#4B4B4B] font-bold">{user.time}</p>
-                  <FaReply color="#898989" size={20} />
-                </div>
-
-                <p className="text-[#898989]  text-2xl">{user.msg}</p>
-              </div>
-            </div>
-            {/* show profile */}
-            <div className="flex flex-row gap-2 items-center justify-between">
-              <FaCaretUp size={40} color="#898989" />
-              <FaCaretDown size={40} color="#898989" />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-row  gap-3">
-        <input
-          type="text"
-          name="message"
-          id="message"
-          placeholder="Type your message"
-          className="bg-[#898989] text-white placeholder:text-white outline-none w-[85%] px-3 py-4 rounded-2xl font-semibold"
-        />
-        <button className="w-[14%] bg-[#898989] text-white font-semibold rounded-2xl ">
-          Send
-        </button>
-      </div>
-      {isHovered && (
-        <div className="flex flex-col gap-8 bg-white border-4 w-[30%] rounded-2xl  p-5 absolute ">
+           {isHovered.id==user.id&&isHovered.hovered && (
+        <div className="flex flex-col gap-8 bg-white border-4 top-[-400px] left-0  rounded-2xl  z-[100]  p-5 absolute ">                        
+  
+        
           <div className="flex flex-row items-center gap-10">
             <div>
-              <img src={userProfile.profile} alt=" user profile" />
+              <img src={user.profile} alt=" user profile" className="w-[91px] h-[91px]" />
             </div>
             <div>
               <h1 className="text-[#898989] font-bold text-2xl">
-                {userProfile.name}
+                {user.name}
               </h1>
               <h1 className="text-[#00FF57] font-semibold">
-                {userProfile.votes} UpVotes | {userProfile.comments} comments
+                {user.votes} UpVotes | {user.comments} comments
               </h1>
             </div>
           </div>
@@ -116,6 +84,43 @@ function USers() {
           </div>
         </div>
       )}
+                <img 
+              
+                src={user.profile} alt="user profile" className="min-w-[48px] min-h-[48px] max-h-[54px] max-w-[54px] object-contain" />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex flex-row gap-2 items-center">
+                  <h1 className="text-[#898989] font-bold md:text-xl text-md">
+                    {user.name}
+                  </h1>
+                  <p className="text-[#4B4B4B] font-bold md:text-xl text-md">{user.time}</p>
+                  <FaReply color="#898989" className="md:w-[20px] md:h-[20px] w-[12px] h-[12px]" />
+                </div>
+
+                <p className="text-[#898989]  md:text-2xl">{user.msg}</p>
+              </div>
+            </div>
+            {/* show profile */}
+            <div className="flex flex-row gap-2 items-center justify-between">
+              <FaCaretUp  color="#898989" className="md:w-[25px] md:h-[25px] w-[20px] h-[20px]" />
+              <FaCaretDown  color="#898989" className="md:w-[25px] md:h-[25px] w-[20px] h-[20px]" />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-row  gap-3">
+        <input
+          type="text"
+          name="message"
+          id="message"
+          placeholder="Type your message"
+          className="bg-[#898989] text-white placeholder:text-white outline-none w-[85%] px-3 py-4 rounded-2xl font-semibold"
+        />
+        <button className="w-[14%] min-w-[60px] bg-[#898989] text-white font-semibold rounded-2xl ">
+          Send
+        </button>
+      </div>
+
     </div>
   );
 }
