@@ -70,7 +70,7 @@ const CurrencyPairBeingUsed = () => {
           onMouseLeave={() => setIsHovered({ id: timeChange.id, hovered: false })}
         >
           {isHovered?.id === timeChange.id && isHovered.hovered && (
-            <div className="flex flex-col gap-8 bg-white min-w-max border-4 rounded-2xl p-5 absolute bottom-3 z-[1000]">
+            <div className="flex flex-col gap-8 bg-white min-w-max border-4 rounded-2xl p-5 absolute bottom-44 z-[1000]">
               {usersWithVotes.map((userWithVote) => (
                 <div key={userWithVote.id} className="flex flex-row  w-fit items-center gap-[13px]">
                   <div>
@@ -91,10 +91,11 @@ const CurrencyPairBeingUsed = () => {
           <div className="hover:cursor-pointer ">
             <img
               src={timeChange.isRight ? "/images/timeGreen.png" : "/images/timeRed.png"}
-              alt=""
+                alt=""
+                
             />
           </div>
-          <p className="text-[#898989] font-bold lg:text-2xl md:text-xl text-sm">{timeChange.time}</p>
+          <p className="text-[#898989] font-bold lg:text-2xl md:text-xl text-[12px]">{timeChange.time}</p>
         </div>
       ))}
         </div>
