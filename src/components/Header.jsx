@@ -1,13 +1,14 @@
 import { IoMdSearch } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Header = () => {
 
     const loggedUserId ="0x95...0cc"
   return (
       <div className="flex flex-row items-center justify-between p-3">
-        <div className="">
+        <Link className="" to="/main">
           <img className="object-cover" src="/images/logoSmall.png" alt="logo" />
-        </div>
+        </Link>
         <div className="flex flex-row items-center gap-3">
           <input type="text" name="search" className="bg-[#E1E1E1] rounded-lg outline-none px-3 w-[420px] h-[28px]" />
           <button>

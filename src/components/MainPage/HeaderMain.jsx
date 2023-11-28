@@ -1,5 +1,6 @@
 import { IoMdSearch } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const HeaderMain = () => {
   const loggedUserId = "0x95...0cc";
   return (
@@ -25,9 +26,10 @@ const HeaderMain = () => {
         <p className="text-[#898989] bg-[#E1E1E1] px-2 rounded-lg">
           {loggedUserId}
         </p>
-        <button>
+
+        <Link  to="/profile">
           <FaUser color="#E1E1E1" size={28} />
-        </button>
+        </Link >
       </div>
     </div>
   );

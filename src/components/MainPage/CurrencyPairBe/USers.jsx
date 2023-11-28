@@ -78,7 +78,7 @@ function USers() {
               {userProfile.badges.map((badge) => (
                 <div
                   key={badge.id}
-                  className="bg-[#00FF57] px-3 py-2 rounded-lg"
+                  className={` ${badge.id == 4 ?"bg-[#ffe335]":"bg-[#00FF57]"} px-3 py-2 rounded-lg`}
                 >
                   <img src={badge.image} alt="badge img" />
                 </div>
