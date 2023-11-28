@@ -6,7 +6,7 @@ import { useState } from "react";
 function USers() {
   const [isHovered, setIsHovered] = useState(false);
 
-  //  use margin for solution for making user div to  be fit to image and time div
+  //  use margin for solution for making user div to  be fit to image and time divv
   return (
     <div className="flex flex-col gap-5  mr-60 ml-32 rounded-2xl p-5 bg-[#E1E1E1] ">
       <div className="flex flex-col gap-12">
