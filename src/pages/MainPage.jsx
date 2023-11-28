@@ -5,7 +5,7 @@ import HeaderMain from "../components/MainPage/HeaderMain";
 const MainPage = () => {
   return (
     <div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 py-5">
         <div >
           <HeaderMain />
         </div>

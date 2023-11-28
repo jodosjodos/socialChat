@@ -4,11 +4,11 @@ import { FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import { userProfile, users } from "../../../data/user";
 import { useState } from "react";
 function USers() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(true);
 
   //  use margin for solution for making user div to  be fit to image and time div
   return (
-    <div className="flex flex-col gap-5  mr-60 ml-32 rounded-2xl p-5 bg-[#E1E1E1] ">
+    <div className="flex flex-col gap-5  mr-60 ml-32 rounded-2xl p-5 bg-[#E1E1E1] relative">
       <div className="flex flex-col gap-12">
         {users.map((user) => (
           <div
@@ -18,12 +18,10 @@ function USers() {
             <div className="flex flex-row gap-12  justify-between items-center">
               <div
                 className="hover:cursor-pointer"
-                onMouseEnter={() => user.id === 4 ? setIsHovered(true) : setIsHovered(false)}
+                onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <img 
-              
-                src={user.profile} alt="user profile" />
+                <img src={user.profile} alt="user profile" />
               </div>
               <div className="flex flex-col">
                 <div className="flex flex-row gap-2 items-center">
@@ -96,10 +94,11 @@ function USers() {
                     <p>{userProfile.pair}</p>
                   </div>
                   <div className="flex flex-row items-center  font-bold text-xl">
-                    <FaCaretUp color="#00FF57" />
-                    <p className="text-[#00FF57]">{userProfile.comments}</p>
-                  </div>
+                  <FaCaretUp  color="#00FF57"/>
+                  <p className="text-[#00FF57]">{userProfile.comments}</p>
                 </div>
+                </div>
+               
               </div>
             </div>
             <div className="flex flex-row gap-5">
