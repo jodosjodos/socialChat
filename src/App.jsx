@@ -3,9 +3,6 @@ import Landing from "./pages/Landing";
 import MainPage from "./pages/MainPage";
 import Profile from "./pages/Profile";
 
-import {useSelector} from "react-redux"
-
-
 function App() {
   // const { user } = useSelector((state) => state.user)
   
