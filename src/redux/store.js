@@ -1,7 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit";
+import commentReducer from "./reducer/comment"
+export const store = configureStore({
+  reducer: {
+    comments:commentReducer ,
 
-  import user from "./reducers/user"
-
-const store = configureStore({reducer:user})
-
-export default store
+  },
+});

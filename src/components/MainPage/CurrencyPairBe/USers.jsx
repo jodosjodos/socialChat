@@ -2,21 +2,38 @@ import { FaReply } from "react-icons/fa";
 import { BsTwitterX, BsDiscord } from "react-icons/bs";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import { userProfile, users } from "../../../data/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {useSelector} from "react-redux"
+import { store } from "../../../redux/store";
+import { makeComment } from "../../../redux/action/comment";
 function USers() {
-  const [orderedList, setOrderedList] = useState(users)
-  const [selectedElementIndex, setSelectedElementIndex] = useState(null)
-
+  
   const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
 
   const savedTheme = localStorage.getItem("theme");
+  let loggedInUser = {
+    id: 56 ,
+    name: "Traderx69",
+    votes:'54',
+    time: "17:31",
+    profile: "/images/profile1.png",
+  }
 
   const isDarkTheme = savedTheme === "dark";
+  const { comments } = useSelector((state) => state.comments)
+  const [comment,setComment]=useState("")
+  const handleComment = () => {
+    store.dispatch(makeComment({ ...loggedInUser, msg: comment }))
+  }
+  useEffect(() => {
+    console.log("comment updated")
+  },[])
+  
   //  use margin for solution for making user div to  be fit to image and time divv
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] dark:bg-[#202020] ">
       <div className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
-        {users.map((user) => (
+        {comments.map((user) => (
           <div
             key={user.id}
             className="flex flex-row relative  items-center justify-between"
@@ -142,8 +159,8 @@ function USers() {
           id="message"
           placeholder="Type your message"
           className="bg-[#898989] text-white placeholder:text-white outline-none w-[85%] px-3 py-4 rounded-2xl font-semibold dark:placeholder:text-[#636363] dark:text-[#636363]"
-        />
-        <button className="w-[14%] min-w-[60px] bg-[#898989] text-white font-semibold rounded-2xl  dark:text-black">
+        onChange={(e)=>setComment(e.target.value)}/>
+        <button className="w-[14%] min-w-[60px] bg-[#898989] text-white font-semibold rounded-2xl  dark:text-black" onClick={handleComment}>
           Send
         </button>
       </div>
