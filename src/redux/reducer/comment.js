@@ -3,6 +3,7 @@ import { users } from "../../data/user";
 
 const initialState = {
   loading: false,
+
   comments: users, // Corrected the property name
   isAuthenticated: false,
   error: null,

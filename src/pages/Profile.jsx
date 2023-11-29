@@ -14,7 +14,7 @@ function Profile() {
           <div>
             <HeaderMain>
               <img
-                className="object-cover"
+                className="object-cover "
                 src="/images/logoSmall.png"
                 alt="logo"
               />
@@ -29,7 +29,7 @@ function Profile() {
                 <img
                   src={userProfile1.image}
                   alt=" user profile"
-                  className="w-[150px] h-[150px]"
+                  className="md:w-[345px] md:h-[345px] w-[200px] h-[200px]"
                 />
                 <button>
                   <FaRegEdit color="#E1E1E1" size={36} />
@@ -104,31 +104,31 @@ function Profile() {
               className="self-center h-[40px] w-[40px] md:w-[60px] md:h-[60px]"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex justify-center w-full flex-col">
             <h1 className="text-[#A6A6A6] font-bold md:text-4xl  text-2xl self-center ">
               Settings
             </h1>
-            <div className="flex flex-col px-3 w-full items-start  gap-4">
-              <div className="flex flex-row item justify-evenly  gap-3 md:items-center text-lg">
-                <p className="text-[#898989] md:text-2xl text-lg self-start">
+            <div className="flex flex-col px-3   w-full   gap-4">
+              <div className="flex flex-row it justify-evenly  gap-4 md:items-center text-lg">
+                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg  gap-4 self-start">
                   Show social connections?{" "}
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-evenly items-center">
-                <p className="text-[#898989] md:text-2xl text-lg  gap-4 self-start">
+              <div className="flex flex-row justify-evenly gap-4 items-center">
+                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg  gap-4 self-start">
                   Show top comment on your mini-profile?
                 </p>
                 <Switcher4 checked={true} />
               </div>
               <div className="flex flex-row justify-evenly gap-4 items-center">
-                <p className="text-[#898989] md:text-2xl text-lg">
+                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg">
                   Show badges on mini-profile?{" "}
                 </p>
                 <Switcher4 checked={true} />
               </div>
               <div className="flex flex-row justify-evenly gap-4 items-center">
-                <p className="text-[#898989] md:text-2xl text-lg">
+                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg">
                   Show connected wallet address? (Disabled by default){" "}
                 </p>
                 <Switcher4 checked={false} />
