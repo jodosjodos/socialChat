@@ -9,7 +9,6 @@ function Profile() {
   return (
     <div className="flex w-full overflow-hidden flex-col gap-4">
       <div>
-  
         <div className="flex flex-col gap-16 dark:bg-[#171717]">
           <div>
             <HeaderMain>
@@ -104,31 +103,31 @@ function Profile() {
               className="self-center h-[40px] w-[40px] md:w-[60px] md:h-[60px]"
             />
           </div>
-          <div className="flex justify-center w-full flex-col">
+          <div className="flex justify-between items-center  w-full flex-col">
             <h1 className="text-[#A6A6A6] font-bold md:text-4xl  text-2xl self-center ">
               Settings
             </h1>
-            <div className="flex flex-col px-3   w-full   gap-4">
-              <div className="flex flex-row it justify-evenly  gap-4 md:items-center text-lg">
-                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg  gap-4 self-start">
+            <div className="flex flex-col px-3    gap-4">
+              <div className="flex flex-row justify-around   gap-[139px] items-center">
+                <p className="text-[#898989] md:w-[650px]  w-[60%]  md:text-2xl text-lg  self-start ">
                   Show social connections?{" "}
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-evenly gap-4 items-center">
-                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg  gap-4 self-start">
+              <div className="flex flex-row justify-around   gap-[139px]  items-center">
+                <p className="text-[#898989] md:w-[650px]  w-[60%]  md:text-2xl text-lg  self-start">
                   Show top comment on your mini-profile?
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-evenly gap-4 items-center">
-                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg">
+              <div className="flex flex-row justify-around gap-[139px]  items-center">
+                <p className="text-[#898989] md:w-[650px] w-[60%]  md:text-2xl text-lg self-start">
                   Show badges on mini-profile?{" "}
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-evenly gap-4 items-center">
-                <p className="text-[#898989] w-[60%]  md:text-2xl text-lg">
+              <div className="flex flex-row justify-around   gap-[139px]  items-center">
+                <p className="text-[#898989] md:w-[650px]  w-[60%]  md:text-2xl text-lg  self-start">
                   Show connected wallet address? (Disabled by default){" "}
                 </p>
                 <Switcher4 checked={false} />
