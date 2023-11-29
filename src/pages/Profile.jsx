@@ -7,10 +7,10 @@ import Switcher4 from "../components/Swicher4";
 
 function Profile() {
   return (
-    <div className="flex w-full items-center  overflow-hidden  flex-col gap-4">
+    <div className="flex  w-full items-center  overflow-hidden  flex-col gap-4">
       <div>
   
-        <div className="flex flex-col gap-16 dark:bg-[#171717]">
+        <div className="flex  flex-col gap-16 dark:bg-[#171717]">
           <div className="w-[100vw]">
             <HeaderMain>
               <img
