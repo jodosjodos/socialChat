@@ -52,7 +52,7 @@ const HeaderMain = ({ children }) => {
 
       </div>
 
-      {sidebarOpened && <div className="fixed z-[1200] shadow-md flex flex-col justify-between md:hidden blok top-0 right-0 h-screen w-[80%] min-w-[200px]  bg-white dark:bg-[#171717] py-3 px-3">
+      {sidebarOpened && <div className="fixed z-[1200] shadow-md flex flex-col justify-between max-w-[500px] lg:hidden blok top-0 right-0 h-screen w-[80%] min-w-[200px]  bg-white dark:bg-[#171717] py-3 px-3">
           <div className="w-full">
           <div className="w-full flex justify-between pt-2 pb-8">
           <ModeToggle />
