@@ -4,14 +4,18 @@ import { FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import { userProfile, users } from "../../../data/user";
 import { useState } from "react";
 function USers() {
+  const [orderedList, setOrderedList] = useState(users)
+  const [selectedElementIndex, setSelectedElementIndex] = useState(null)
+
   const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
 
   const savedTheme = localStorage.getItem("theme");
+
   const isDarkTheme = savedTheme === "dark";
   //  use margin for solution for making user div to  be fit to image and time divv
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] dark:bg-[#202020] ">
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
         {users.map((user) => (
           <div
             key={user.id}

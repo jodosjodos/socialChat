@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState={user:null,loading:false,isLoggedIn:false,error:null}
 
 const userSlice = createSlice({
+  name:'user',
   initialState: initialState,
   reducers: {
     loadUserStart: (state) => {
@@ -24,3 +25,6 @@ const userSlice = createSlice({
   
   
 })
+
+export default userSlice.reducer
+export const {loadUserStart,loadUserFailure,loadUserSuccess} =userSlice.actions

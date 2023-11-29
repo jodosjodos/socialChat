@@ -7,6 +7,20 @@ export const users = [
     profile: "/images/profile1.png",
   },
   {
+    id: 5,
+    name: "Traderx69",
+    msg: "Does anyone have telegram  ?",
+    time: "17:31",
+    profile: "/images/profile1.png",
+  },
+  {
+    id: 8,
+    name: "Traderx69",
+    msg: "Does anyone have telegram  ?",
+    time: "17:31",
+    profile: "/images/profile1.png",
+  },
+  {
     id: 2,
     name: "Jaymann",
     msg: "Yeah it is DN ",
