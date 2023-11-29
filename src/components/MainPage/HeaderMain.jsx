@@ -22,7 +22,7 @@ const HeaderMain = ({ children }) => {
  to="/" className="">
        {children}
       </Link>
-      <div className="md:flex hidden flex-row items-center gap-3">
+      <div className="lg:flex hidden flex-row items-center gap-3">
         <input
           type="text"
           name="search"
@@ -33,7 +33,7 @@ const HeaderMain = ({ children }) => {
       
         </button>
       </div>
-      <div className="md:flex  hidden flex-row gap-3 items-center">
+      <div className="lg:flex  hidden flex-row gap-3 items-center">
       <ModeToggle />
         <div>
           <img src="/images/greenDot.png" />
@@ -47,7 +47,7 @@ const HeaderMain = ({ children }) => {
           <FaUser color="#E1E1E1" size={28} />
         </Link >
       </div>
-      <div className="md:hidden block">
+      <div className="lg:hidden block">
       <CgMenuRightAlt size={34} className="dark:text-white" onClick={()=>setSidebarOpened(true)} />
 
       </div>
