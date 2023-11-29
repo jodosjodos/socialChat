@@ -11,7 +11,7 @@ function App() {
   return (
 
     <>
-      <div className="dark:bg-[#171717]">
+      <div className="dark:bg-[#171717] min-h-screen">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing  />}></Route>
