@@ -7,10 +7,11 @@ import Switcher4 from "../components/Swicher4";
 
 function Profile() {
   return (
-    <div className="flex w-full overflow-hidden flex-col gap-4">
+    <div className="flex w-full items-center  overflow-hidden  flex-col gap-4">
       <div>
+  
         <div className="flex flex-col gap-16 dark:bg-[#171717]">
-          <div>
+          <div className="w-[100vw]">
             <HeaderMain>
               <img
                 className="object-cover "
@@ -19,16 +20,17 @@ function Profile() {
               />
             </HeaderMain>
           </div>
-          <div className="flex flex-col justify-center gap-5">
+          <div className="  self-center  ">
+                      <div className="flex  lg:max-w-[2000px] lg:min-w-[1000px] flex-col gap-5">
             <h1 className="text-[#A6A6A6] font-bold md:text-4xl text-2xl self-center">
               Profile Settings
             </h1>
-            <div className="flex md:flex-row flex-col items-center justify-evenly">
+            <div className="flex md:flex-row flex-col items-center justify-between">
               <div className="flex flex-col gap-4  justify-center items-center">
                 <img
                   src={userProfile1.image}
                   alt=" user profile"
-                  className="md:w-[345px] md:h-[345px] w-[200px] h-[200px]"
+                  className="lg:w-[345px] lg:h-[345px] md:w-[250px] md:h-[250px] w-[200px] h-[200px]"
                 />
                 <button>
                   <FaRegEdit color="#E1E1E1" size={36} />
@@ -82,7 +84,7 @@ function Profile() {
               </p>
             </div>
 
-            <div className="flex flex-row justify-evenly">
+            <div className="flex flex-row justify-between items-start px-0">
               {userProfile1.badges.map((badge) => (
                 <div
                   key={badge.id}
@@ -93,7 +95,7 @@ function Profile() {
                   <img
                     src={badge.image}
                     alt="badge img"
-                    className="object-cover w-[30px] h-[30px] md:w-[150px] md:h-[150px]"
+                    className="object-cover w-[30px] h-[30px] md:w-[100px] md:h-[100px] lg:w-[150px] lg:h-[150px]"
                   />
                 </div>
               ))}
@@ -107,33 +109,35 @@ function Profile() {
             <h1 className="text-[#A6A6A6] font-bold md:text-4xl  text-2xl self-center ">
               Settings
             </h1>
-            <div className="flex flex-col px-3    gap-4">
-              <div className="flex flex-row justify-around   gap-[139px] items-center">
-                <p className="text-[#898989] md:w-[650px]  w-[60%]  md:text-2xl text-lg  self-start ">
+            <div className="flex flex-col w-full    gap-4">
+              <div className="flex flex-row justify-between  w-full items-center">
+                <p className="text-[#898989]    md:text-2xl text-lg  self-start ">
                   Show social connections?{" "}
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-around   gap-[139px]  items-center">
-                <p className="text-[#898989] md:w-[650px]  w-[60%]  md:text-2xl text-lg  self-start">
+              <div className="flex flex-row  justify-between   w-full items-center">
+                <p className="text-[#898989] md:text-2xl text-lg  self-start">
                   Show top comment on your mini-profile?
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-around gap-[139px]  items-center">
-                <p className="text-[#898989] md:w-[650px] w-[60%]  md:text-2xl text-lg self-start">
+              <div className="flex flex-row between justify-between  w-full  items-center">
+                <p className="text-[#898989]   md:text-2xl text-lg self-start">
                   Show badges on mini-profile?{" "}
                 </p>
                 <Switcher4 checked={true} />
               </div>
-              <div className="flex flex-row justify-around   gap-[139px]  items-center">
-                <p className="text-[#898989] md:w-[650px]  w-[60%]  md:text-2xl text-lg  self-start">
+              <div className="flex flex-row  justify-between  w-full items-center">
+                <p className="text-[#898989]   md:text-2xl text-lg  self-start">
                   Show connected wallet address? (Disabled by default){" "}
                 </p>
                 <Switcher4 checked={false} />
               </div>
             </div>
           </div>
+          </div>
+
         </div>
       </div>
     </div>
