@@ -47,21 +47,21 @@ const CurrencyPairBeingUsed = () => {
         </div>
  
       </div>
-      <div>
+      <div className="w-full">
         <img
           src="/images/tradeGraph.png"
           alt="trade graph"
-          className="bg-cover "
+          className="bg-cover w-full max-h-[1500px] "
         />
       </div>
-      <div className="flex flex-row items-center md:gap-5 md:justify-start lg:justify-center">
+      <div className="flex flex-row items-center md:gap-5 justify-center">
         <p className="text-[#898989] font-semibold md:text-2xl text-xl">Highlights</p>
         <p className="bg-[#E1E1E1] px-6 py-2 text-[#898989]  font-semibold  rounded-2xl dark:bg-[#202020]">
           {height}
         </p>
       </div>
       <div className="flex flex-row gap-1 relative w-full">
-        <div className="overflow-x-scroll flex flex-row">
+        <div className="overflow-x-scroll justify-between flex flex-row w-full">
         {timeChanges.map((timeChange) => (
         <div
           key={timeChange.id}
