@@ -6,6 +6,9 @@ const CurrencyPairs = ({
   currentDataLosers,
   loadingLosers,
   handleMoreLosers,
+  // currentDataHotPairs,
+  // loadingHotPairs,
+  // handleMoreHotPairs,
 }) => {
   console.log(currentDataLosers);<div className=" border-2 w-full justify-center xl:w-max rounded-xl flex flex-col gap-8 border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020]">
          
@@ -137,5 +140,8 @@ CurrencyPairs.propTypes = {
   currentDataLosers: PropTypes.array.isRequired,
   handleMoreLosers: PropTypes.func.isRequired,
   loadingLosers: PropTypes.bool.isRequired,
+  // currentDataHotPairs: PropTypes.array.isRequired,
+  // handleMoreHotPairs: PropTypes.func.isRequired,
+  // loadingHotPairs: PropTypes.bool.isRequired,
 };
 export default CurrencyPairs;
