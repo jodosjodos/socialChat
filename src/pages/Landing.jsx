@@ -26,7 +26,7 @@ const Landing = () => {
     const intervalId = setInterval(() => {
       dispatch(getGainers());
       dispatch(getLosers())
-    }, 5 * 60 * 1000);
+    }, 5 *  60*1000);
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
