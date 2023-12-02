@@ -46,8 +46,8 @@
             },
             mode: 'xy',
             limits: {
-              x: { min: 0, max: 10 }, // Adjust the limits as needed
-              y: { min: 0, max: 10 }, // Adjust the limits as needed
+              x: { min: 1, max: 10 }, // Adjust the limits as needed
+              y: { min: 1, max: 10 }, // Adjust the limits as needed
             },
           },
           pan: {
@@ -70,7 +70,7 @@
         date.getHours() > 12
           ? `${date.getHours() - 12}:${date.getMinutes()} PM`
           : `${date.getHours()}:${date.getMinutes()} AM`;
-        let label=days === 1 ? time : date.toLocaleDateString();
+        let label=days === 1 ?index%6==0?time:'' : date.toLocaleDateString();
 
   return(<div
   key = {label}
@@ -129,25 +129,37 @@
           <h2>Loading</h2>
         ) : (
           <>
-            <Line className="cursor-pointer dark:text-white"  
-              data={{
-                labels: historicData.map((coin) => {
-                  let date = new Date(coin[0]);
-                  let time =
-                    date.getHours() > 12
-                      ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                      : `${date.getHours()}:${date.getMinutes()} AM`;
-                  return  ""
-                }),
-                datasets: [
-                  {
-                    data: historicData.map((coin) => coin[1]),
-                    label: `Price (Past ${days} Days)`,
-                    borderColor: "#ff0000",
+              <Line className="cursor-pointer dark:text-white"
+                data={{
+                  labels: historicData.map((coin, index) => {
+                    let date = new Date(coin[0]);
+                    let time =
+                      date.getHours() > 12
+                        ? `${date.getHours() - 12}:${date.getMinutes()}`
+                        : `${date.getHours()}:${date.getMinutes()}`;
+                    return days === 1 ? index % 6 == 0 ? time : '' : date.toLocaleDateString();
+                  }),
+                  datasets: [
+                    {
+                      data: historicData.map((coin) => coin[1]),
+                      label: `Price (Past ${days} Days)`,
+                      borderColor: "#ff0000",
+                    },
+                  ],
+                }}
+                options={{
+                  ...options,
+                  scales: {
+                    x: {
+                      ticks: {
+                        maxRotation: 0, // Disable rotation of labels
+                        autoSkip: true, // Disable automatic skipping of labels
+                  
+                      },
+                    },
                   },
-                ],
-              }}
-              options={options}
+                }
+                }
               >
                 
               </Line>
