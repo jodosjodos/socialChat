@@ -7,9 +7,12 @@ import CoinInfo from "../../Graph/Graph";
 import axios from "axios"
 
 import { CoinList, SingleCoin } from "../../config/api";
+import HeaderMain from "../HeaderMain";
 
 const CurrencyPairBeingUsed = () => {
-  const [coinInfo,setCoinInfo]=useState({})
+  const [coinInfo, setCoinInfo] = useState({})
+  const savedTheme = localStorage.getItem("theme");
+  const isDark = savedTheme === "dark";
   const { token } = useParams();
   const [coin, setCoin] = useState();
   const currency = 'usd'
@@ -85,7 +88,11 @@ const CurrencyPairBeingUsed = () => {
       </div>
 
 
-    </div>:<p>No token address found Please provide token</p>}
+      </div> : <div className={`w-full h-[100vh] flex flex-col items-center fixed top-0  z-[2000] left-0  dark:bg-black bg-white text-black dark:text-white`}>
+          <HeaderMain><h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
+          <img src={isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"} className="w-[80%] md:w-[30%] max-w-[400px]"  />
+           <p className="md:text-xl text-md">No token found with that address</p>
+      </div>}
 
 </>
   );
