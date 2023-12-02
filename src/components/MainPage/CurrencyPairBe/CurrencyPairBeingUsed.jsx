@@ -28,15 +28,11 @@ const CurrencyPairBeingUsed = () => {
 
 
   useEffect(() => {
-    console.log('making request')
+ 
     fetchCoin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
   const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
-  const number = 3;
-
-  number.toFixed(2)
-  console.log(number)
   const height = "15m";
   console.log('is')
   //  use margin to adjust  border to fit similar to image and user
