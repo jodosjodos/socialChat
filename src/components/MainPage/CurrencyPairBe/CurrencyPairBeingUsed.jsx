@@ -9,17 +9,19 @@ import axios from "axios"
 import { CoinList, SingleCoin } from "../../config/api";
 
 const CurrencyPairBeingUsed = () => {
+  const [coinInfo,setCoinInfo]=useState({})
   const { token } = useParams();
   const [coin, setCoin] = useState();
   const currency = 'usd'
   const symbol='$'
 
+ 
 
   const fetchCoin = async () => {
     const { data } = await axios.get(CoinList(currency));
-    data.map((item) => {
-      console.log(item.platforms.ethereum&&item.platforms.ethereum)
-    })
+
+   
+
     let single_coin = data.filter((data) => data.platforms.ethereum &&data.platforms.ethereum == token)
     console.log('single coin')
     console.log(single_coin)
@@ -29,9 +31,14 @@ const CurrencyPairBeingUsed = () => {
 
   useEffect(() => {
  
-    fetchCoin();
+    fetchCoin().then(async () => {
+      const coinDetails = await axios.get(SingleCoin(coin && coin.id))
+      console.log(coinDetails)
+      // setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
+    });
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [token,coin]);
   const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
   const height = "15m";
   console.log('is')
@@ -51,7 +58,8 @@ const CurrencyPairBeingUsed = () => {
         <div className="flex flex-col items-center">
           <h1 className="text-[#454545] font-semibold md:text-[15px]  ">MCAP</h1>
           <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5  rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-            48.13M
+              {/* {coin.market_cap} */}
+              12.3M
           </p>
         </div>
         <div className="flex flex-col">
