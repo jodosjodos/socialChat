@@ -59,7 +59,7 @@ const data = [
           <Routes>
             <Route path="/" element={<Landing />}></Route>
          
-            <Route path="/coin/:token" element={<MainPage />}></Route>
+            <Route path="/main/:token" element={<MainPage />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
           </Routes>
         </BrowserRouter>

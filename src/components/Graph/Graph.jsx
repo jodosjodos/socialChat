@@ -1,6 +1,6 @@
   import axios from "axios";
   import { useEffect, useState } from "react";
-  import { HistoricalChart } from "../config/api";
+  import { HistoricalChart, SingleCoin } from "../config/api";
   import Chart from 'chart.js/auto';
   import { Line } from "react-chartjs-2";
   import { CategoryScale } from 'chart.js';
@@ -10,8 +10,9 @@
   import { chartDays } from "../config/data";
   import { timeChanges } from "../../data/timeChange";
   import { usersWithVotes } from "../../data/user";
-  const CoinInfo = ({ coin }) => {  
-    console.log("coin")
+const CoinInfo = ({ coin }) => {  
+    const [coinInfo,setCoinInfo]=useState({})
+
     console.log(coin)
     
     const height = "15m";
@@ -22,9 +23,14 @@
     const [days, setDays] = useState(1);
 
     const [flag, setflag] = useState(false);
-    const currency = 'usd';
+  const currency = 'usd';
+  let coinDetails;
 
     const fetchHistoricData = async () => {
+       coinDetails = await axios.get(SingleCoin(coin && coin.id))
+      setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
+      
+      
       const { data } = await axios.get(HistoricalChart(coin&&coin.id, days, currency));
       setflag(true);
       setHistoricData(data.prices);
@@ -32,7 +38,8 @@
 
     useEffect(() => {
       fetchHistoricData();
-    }, [days,coin]);
+    }, [days, coin]);
+  console.log(coinDetails)
 
     const options = {
       plugins: {
@@ -61,16 +68,14 @@
 
 
     const Labels = () => historicData ? historicData.map((coin, index) => {
-      console.log('index' + index)
-        console.log(index!=0?historicData[index][1]:historicData[index][1])
-        console.log(historicData[index][1])
+
 
       let date = new Date(coin[0]);
       let time =
         date.getHours() > 12
           ? `${date.getHours() - 12}:${date.getMinutes()} PM`
           : `${date.getHours()}:${date.getMinutes()} AM`;
-        let label=days === 1 ?index%6==0?time:'' : date.toLocaleDateString();
+        let label=days === 1 ?time : date.toLocaleDateString();
 
   return(<div
   key = {label}
@@ -158,8 +163,36 @@
                       },
                     },
                   },
+                  onHover: (event, chart) => {
+                    const { chartArea, scales } = chart;
+                    if (!chartArea || !scales) return;
+              
+                    const { xScale, yScale } = scales;
+                    const { offsetX, offsetY } = event;
+              
+                    const xValue = xScale.getValueForPixel(offsetX);
+                    const yValue = yScale.getValueForPixel(offsetY);
+              
+                    // Find the corresponding data point based on xValue
+                    const dataPoint = historicData.find((data) => data[0] === xValue);
+              
+                    if (dataPoint) {
+                      const price = dataPoint[1];
+                      const date = new Date(xValue);
+                      const time = days === 1 ? date.toLocaleTimeString() : date.toLocaleDateString();
+              
+                      setCursorInfo({
+                        x: xValue,
+                        y: yValue,
+                        price: price,
+                        time: time,
+                      });
+                    }
+                  },
+                
                 }
                 }
+                
               >
                 
               </Line>
