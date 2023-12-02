@@ -92,7 +92,7 @@ const CurrencyPairBeingUsed = () => {
       </div> : <div className={`w-full h-[100vh] flex flex-col items-center fixed top-0  z-[2000] left-0  dark:bg-black bg-white text-black dark:text-white`}>
           <HeaderMain><h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
           <img src={isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"} className="w-[80%] md:w-[30%] max-w-[400px]" />
-          {loading!=true&& <p className="md:text-xl text-md">{error=="Network Error"?"Something went wrong":"No token found with that address" }</p>}
+          {loading!=true&& <p className="md:text-xl text-md">{error&&!loading=="Network Error"?"Something went wrong":"No token found with that address" }</p>}
          
       </div>}
 
