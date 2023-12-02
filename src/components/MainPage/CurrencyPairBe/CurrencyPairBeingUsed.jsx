@@ -8,34 +8,34 @@ import axios from "axios"
 
 import { CoinList, SingleCoin } from "../../config/api";
 import HeaderMain from "../HeaderMain";
+import {useSelector} from "react-redux"
+import { store } from "../../../redux/store";
+import { getCoin } from "../../../redux/action/coin";
 
 const CurrencyPairBeingUsed = () => {
   const [coinInfo, setCoinInfo] = useState({})
   const savedTheme = localStorage.getItem("theme");
   const isDark = savedTheme === "dark";
   const { token } = useParams();
-  const [coin, setCoin] = useState();
+  const {coins,loading,error}=useSelector((state)=>state.coins)
   const currency = 'usd'
   const symbol='$'
 
-  const fetchCoin = async () => {    const { data } = await axios.get(CoinList(currency));
-    let single_coin = data.filter((data) => data.platforms.ethereum &&data.platforms.ethereum == token)
-    console.log('single coin')
-    console.log(single_coin)
-    setCoin(single_coin&&single_coin[0]);
-  };
+  console.log(coins)
+  
 
 
   useEffect(() => {
  
-    fetchCoin().then(async () => {
-      const coinDetails = await axios.get(SingleCoin(coin && coin.id))
+    store.dispatch(getCoin(currency, token)).then(async () => {
+      console.log(coins.id)
+      const coinDetails =coins!=null?await axios.get(SingleCoin(coins.id)):""
       console.log(coinDetails)
       setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
     });
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token,coin,isDark]);
+  }, [token,coins,isDark]);
   const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
   const height = "15m";
 
@@ -43,7 +43,7 @@ const CurrencyPairBeingUsed = () => {
   
   return (
     <>
-      {token?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      {token&&loading!=true&&coins!=null?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
       
       <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
         <div className="flex flex-col min-w-fit w-full  items-center ">
@@ -84,7 +84,7 @@ const CurrencyPairBeingUsed = () => {
  
       </div>
       <div className="w-full">
-      <CoinInfo coin={coin} />
+      <CoinInfo coin={coins} />
       </div>
 
 
