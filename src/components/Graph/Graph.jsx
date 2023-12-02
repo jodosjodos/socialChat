@@ -131,7 +131,7 @@ const CoinInfo = ({ coin }) => {
 
 
 
-    }):<p>loading</p>
+    }):<p> </p>
     return (
       <div>
         {!historicData || flag === false ? (
