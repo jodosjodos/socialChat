@@ -15,13 +15,7 @@ const CurrencyPairBeingUsed = () => {
   const currency = 'usd'
   const symbol='$'
 
- 
-
-  const fetchCoin = async () => {
-    const { data } = await axios.get(CoinList(currency));
-
-   
-
+  const fetchCoin = async () => {    const { data } = await axios.get(CoinList(currency));
     let single_coin = data.filter((data) => data.platforms.ethereum &&data.platforms.ethereum == token)
     console.log('single coin')
     console.log(single_coin)
@@ -41,8 +35,8 @@ const CurrencyPairBeingUsed = () => {
   }, [token,coin]);
   const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
   const height = "15m";
-  console.log('is')
-  //  use margin to adjust  border to fit similar to image and user
+
+  
   
   return (
     <>

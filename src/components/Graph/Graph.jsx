@@ -11,10 +11,14 @@
   import { timeChanges } from "../../data/timeChange";
   import { usersWithVotes } from "../../data/user";
 const CoinInfo = ({ coin }) => {  
+   
     const [coinInfo,setCoinInfo]=useState({})
 
     console.log(coin)
     
+    const savedTheme = localStorage.getItem("theme");
+    let loggedInUser=null
+    const isDarkTheme = savedTheme === "dark";
     const height = "15m";
     const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
     Chart.register(CategoryScale);
@@ -131,7 +135,9 @@ const CoinInfo = ({ coin }) => {
     return (
       <div>
         {!historicData || flag === false ? (
-          <h2>Loading</h2>
+          <div className="w-full">
+            <img src={isDarkTheme?"/images/tradeGraph.png":'/images/whiteGraph.png'} className=" blur-md" alt="" />
+          </div>
         ) : (
           <>
               <Line className="cursor-pointer dark:text-white"
