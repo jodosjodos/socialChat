@@ -43,8 +43,11 @@ const CurrencyPairBeingUsed = () => {
   const height = "15m";
   console.log('is')
   //  use margin to adjust  border to fit similar to image and user
+  
   return (
-    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+    <>
+      {token?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      
       <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
         <div className="flex flex-col min-w-fit w-full  items-center ">
           <h1 className="text-[#454545] font-semibold self-start">
@@ -88,7 +91,9 @@ const CurrencyPairBeingUsed = () => {
       </div>
 
 
-    </div>
+    </div>:<p>No token address found Please provide token</p>}
+
+</>
   );
 };
 

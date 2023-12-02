@@ -14,6 +14,7 @@ const MainPage = ({ sidebarOpened, setSidebarOpened }) => {
           <HeaderMain > <h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
         </div>
         <div className="lg:px-32 w-full overflow-x-hidden md:px-25 px-3 ">
+          
           <CurrencyPairBeingUsed />
         </div>
         <div>
