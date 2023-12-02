@@ -34,7 +34,7 @@ const CurrencyPairBeingUsed = () => {
     fetchCoin().then(async () => {
       const coinDetails = await axios.get(SingleCoin(coin && coin.id))
       console.log(coinDetails)
-      // setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
+      setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
     });
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,8 +43,11 @@ const CurrencyPairBeingUsed = () => {
   const height = "15m";
   console.log('is')
   //  use margin to adjust  border to fit similar to image and user
+  
   return (
-    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+    <>
+      {token?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      
       <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
         <div className="flex flex-col min-w-fit w-full  items-center ">
           <h1 className="text-[#454545] font-semibold self-start">
@@ -58,7 +61,7 @@ const CurrencyPairBeingUsed = () => {
         <div className="flex flex-col items-center">
           <h1 className="text-[#454545] font-semibold md:text-[15px]  ">MCAP</h1>
           <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5  rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-              {/* {coin.market_cap} */}
+              {coinInfo&&coinInfo.market_cap}
               12.3M
           </p>
         </div>
@@ -88,7 +91,9 @@ const CurrencyPairBeingUsed = () => {
       </div>
 
 
-    </div>
+    </div>:<p>No token address found Please provide token</p>}
+
+</>
   );
 };
 
