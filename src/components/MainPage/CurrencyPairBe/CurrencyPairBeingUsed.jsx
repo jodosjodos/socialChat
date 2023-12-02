@@ -2,7 +2,7 @@ import { timeChanges } from "../../../data/timeChange";
 import { usersWithVotes } from "../../../data/user";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser";
+
 import CoinInfo from "../../Graph/Graph";
 
 import { SingleCoin } from "../../config/api";
