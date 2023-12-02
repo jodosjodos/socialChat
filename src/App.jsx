@@ -3,7 +3,7 @@ import Landing from "./pages/Landing";
 import MainPage from "./pages/MainPage";
 import Profile from "./pages/Profile";
 import Chart from "./components/Graph/Graph";
-import CoinPage from "./pages/CoinPage";
+
 
 function App() {
 const data = [
@@ -58,7 +58,7 @@ const data = [
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />}></Route>
-            <Route path="/chart/:id" element={<CoinPage  />}></Route>
+         
             <Route path="/main" element={<MainPage />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
           </Routes>
