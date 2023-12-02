@@ -43,7 +43,7 @@ const CurrencyPairBeingUsed = () => {
   
   return (
     <>
-      {token&&loading!=true&&coins!=null?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      {token&&loading!=true&&coins.id?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
       
       <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
         <div className="flex flex-col min-w-fit w-full  items-center ">
@@ -90,8 +90,9 @@ const CurrencyPairBeingUsed = () => {
 
       </div> : <div className={`w-full h-[100vh] flex flex-col items-center fixed top-0  z-[2000] left-0  dark:bg-black bg-white text-black dark:text-white`}>
           <HeaderMain><h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
-          <img src={isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"} className="w-[80%] md:w-[30%] max-w-[400px]"  />
-           <p className="md:text-xl text-md">No token found with that address</p>
+          <img src={isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"} className="w-[80%] md:w-[30%] max-w-[400px]" />
+          {loading!=true&& <p className="md:text-xl text-md">{ }No token found with that address</p>}
+         
       </div>}
 
 </>
