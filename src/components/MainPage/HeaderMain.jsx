@@ -1,6 +1,7 @@
 import { IoMdClose, IoMdLogOut, IoMdSearch } from "react-icons/io";
 
 import { CgMenuRightAlt } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { FaUser } from "react-icons/fa";
@@ -14,7 +15,16 @@ const HeaderMain = ({ children }) => {
     const savedTheme = localStorage.getItem("theme");
     const isDarkTheme = savedTheme === "dark";
     const loggedUserId = "0x95...0cc";
+    const [token, setToken] = useState()
+
+  const navigate = useNavigate();
+ 
   
+  
+  const handleSubmit = () => {
+    navigate(`/main/${token}`)
+    
+  }
 
   return (
     <div className="flex top-0 left-0 right-0 flex-row items-center justify-between md:p-5 p-2 w-full">
@@ -22,17 +32,18 @@ const HeaderMain = ({ children }) => {
  to="/" className="">
        {children}
       </Link>
-      <div className="lg:flex hidden flex-row items-center gap-3">
+      <form className="lg:flex hidden flex-row items-center gap-3"  onSubmit={handleSubmit}>
         <input
           type="text"
           name="search"
           className="bg-[#E1E1E1] rounded-lg outline-none px-3 w-[420px] h-[28px] dark:bg-[#898989]"
+          onChange={(e)=>setToken(e.target.value)}
         />
         <button>
         <IoMdSearch color={`${isDarkTheme ? "#898989" : "#E1E1E1"}`} size={38} />
       
         </button>
-      </div>
+      </form>
       <div className="lg:flex  hidden flex-row gap-3 items-center">
       <ModeToggle />
         <div>

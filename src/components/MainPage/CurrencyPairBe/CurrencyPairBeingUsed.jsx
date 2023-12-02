@@ -34,7 +34,7 @@ const CurrencyPairBeingUsed = () => {
     fetchCoin().then(async () => {
       const coinDetails = await axios.get(SingleCoin(coin && coin.id))
       console.log(coinDetails)
-      // setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
+      setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
     });
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,7 +61,7 @@ const CurrencyPairBeingUsed = () => {
         <div className="flex flex-col items-center">
           <h1 className="text-[#454545] font-semibold md:text-[15px]  ">MCAP</h1>
           <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5  rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-              {/* {coin.market_cap} */}
+              {coinInfo&&coinInfo.market_cap}
               12.3M
           </p>
         </div>
