@@ -35,7 +35,7 @@ const CurrencyPairBeingUsed = () => {
     });
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token,coins,isDark]);
+  }, [token,store.dispatch,isDark]);
   const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
   const height = "15m";
 
