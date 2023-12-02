@@ -1,8 +1,20 @@
 import { IoMdSearch } from "react-icons/io";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
+  
 
 function MiddleLogo() {
+  const [token, setToken] = useState()
   const savedTheme = localStorage.getItem("theme");
   const isDarkTheme = savedTheme === "dark";
+  const navigate = useNavigate();
+ 
+  
+  
+  const handleSubmit = () => {
+    history.push(`/coin/${token}`)
+    
+  }
   return (
     <div className="flex flex-col items-center px-3 justify-center gap-3">
       <div>
@@ -11,16 +23,18 @@ function MiddleLogo() {
       <div>
         <h1 className="text-[#898989] font-bold text-2xl">Welcome to Chatr. Please input a token address to get started.</h1>
       </div>
-      <div className="flex flex-row justify-center  items-center w-full gap-3">
+      <form className="flex flex-row justify-center  items-center w-full gap-3" onSubmit={handleSubmit}>
         <input
           type="text"
           name="search"
           className="bg-[#E1E1E1] rounded-3xl outline-none px-3 w-[100%] md:w-[80%] h-[50px] dark:bg-[#898989]"
+          onChange={(e)=>setToken(e.target.value)}
+          
         />
         <button className="font-bold">
           <IoMdSearch color={`${isDarkTheme ? "#898989" : "#E1E1E1"}`} size={38} />
         </button>
-      </div>
+      </form>
     </div>
   );
 }
