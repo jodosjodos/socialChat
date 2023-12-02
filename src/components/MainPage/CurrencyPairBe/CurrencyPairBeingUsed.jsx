@@ -1,10 +1,35 @@
-import { useState } from "react";
 import { timeChanges } from "../../../data/timeChange";
 import { usersWithVotes } from "../../../data/user";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
+import CoinInfo from "../../Graph/Graph";
+
+import { SingleCoin } from "../../config/api";
 
 const CurrencyPairBeingUsed = () => {
-  const [isHovered,setIsHovered]=useState({id:'',hovered:false})
+  const { id } = useParams();
+  const [coin, setCoin] = useState();
+  const currency = 'usd'
+  const symbol='$'
 
+
+  const fetchCoin = async () => {
+    const { data } = await axios.get(SingleCoin(id));
+    console.log(data)
+
+    setCoin(data);
+  };
+
+  useEffect(() => {
+    fetchCoin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
+  const number = 3;
+
+  number.toFixed(2)
+  console.log(number)
   const height = "15m";
   console.log('is')
   //  use margin to adjust  border to fit similar to image and user
@@ -48,11 +73,7 @@ const CurrencyPairBeingUsed = () => {
  
       </div>
       <div className="w-full">
-        <img
-          src="/images/tradeGraph.png"
-          alt="trade graph"
-          className="bg-cover w-full max-h-[1500px] "
-        />
+      <CoinInfo coin={coin} />
       </div>
       <div className="flex flex-row items-center md:gap-5 justify-center">
         <p className="text-[#898989] font-semibold md:text-2xl text-xl">Highlights</p>

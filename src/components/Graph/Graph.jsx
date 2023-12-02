@@ -1,64 +1,113 @@
-import React, { useRef, useEffect } from 'react';
-import * as d3 from 'd3';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { HistoricalChart } from "../config/api";
+import Chart from 'chart.js/auto';
+import { Line } from "react-chartjs-2";
+import {CategoryScale} from 'chart.js'; 
+import zoomPlugin from 'chartjs-plugin-zoom';
 
-const Chart = ({ data }) => {
-  const svgRef = useRef();
+import SelectButton from "./SelectButton";
+import { chartDays } from "../config/data";
+// import { CryptoState } from "./CryptoContext";
 
-  // Define width and height outside the useEffect hook
-  const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-  const width = 400 - margin.left - margin.right;
-  const height = 200 - margin.top - margin.bottom;
+const CoinInfo = ({ coin }) => {
+  Chart.register(CategoryScale);
+  Chart.register(zoomPlugin);
+  const [historicData, setHistoricData] = useState();
+  const [days, setDays] = useState(1);
+
+  const [flag, setflag] = useState(false);
+  const currency='usd'
+
+
+
+  const fetchHistoricData = async () => {
+    const { data } = await axios.get(HistoricalChart('01coin', days, currency));
+    console.log(data)
+console.log('historical data')
+    setflag(true);
+    setHistoricData(data.prices)
+  };
+
+  
 
   useEffect(() => {
-    const svg = d3.select(svgRef.current);
+    console.log('reload')
+    fetchHistoricData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [days]);
 
-    const xScale = d3
-      .scaleTime()
-      .domain(d3.extent(data, d => new Date(d.time)))
-      .range([0, width]);
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([d3.min(data, d => d.low), d3.max(data, d => d.high)])
-      .range([height, 0]);
-
-    const line = d3
-      .line()
-      .x(d => xScale(new Date(d.time)))
-      .y(d => yScale(d.high));
-
-    svg.selectAll('*').remove(); // Clear previous content
-
-    // Draw the high line
-    svg
-      .append('path')
-      .data([data])
-      .attr('class', 'line high')
-      .attr('d', line);
-
-    // Draw the low line
-    line.y(d => yScale(d.low));
-    svg
-      .append('path')
-      .data([data])
-      .attr('class', 'line low')
-      .attr('d', line);
-
-    // Add x-axis
-    svg
-      .append('g')
-      .attr('transform', `translate(0, ${height})`)
-      .call(d3.axisBottom(xScale));
-
-    // Add y-axis
-    svg.append('g').call(d3.axisLeft(yScale));
-  }, [data, width, height]); // Add width and height to the dependencies array
+ 
+   const  options={
+      plugins: {
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'xy',
+          }
+        }
+      }
+    }
 
   return (
-    <svg width={width} height={height} ref={svgRef}>
-      <g transform={`translate(${margin.left}, ${margin.top})`} />
-    </svg>
+    
+      <div>
+        {!historicData | flag===false ? (
+      <h2>loading</h2>
+        ) : (
+          <>
+            <Line
+              data={{
+                labels: historicData.map((coin) => {
+                  let date = new Date(coin[0]);
+                  let time =
+                    date.getHours() > 12
+                      ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                      : `${date.getHours()}:${date.getMinutes()} AM`;
+                  return days === 1 ? time : date.toLocaleDateString();
+                }),
+
+                datasets: [
+                  {
+                    data: historicData.map((coin) => coin[1]),
+                    label: `Price ( Past ${days} Days ) in }`,
+                    borderColor: "#EEBC1D",
+                  },
+                ],
+              }}
+        options={options}
+
+            />
+            <div
+              style={{
+                display: "flex",
+                marginTop: 20,
+                justifyContent: "space-around",
+                width: "100%",
+              }}
+            >
+              {chartDays.map((day) => (
+                <SelectButton
+                  key={day.value}
+                  onClick={() => {setDays(day.value);
+                    setflag(false);
+                  }}
+                  selected={day.value === days}
+                >
+                  {day.label}
+                </SelectButton>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+   
   );
 };
 
-export default Chart;
+export default CoinInfo;
