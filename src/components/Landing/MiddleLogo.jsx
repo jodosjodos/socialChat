@@ -12,7 +12,7 @@ function MiddleLogo() {
   
   
   const handleSubmit = () => {
-    history.push(`/coin/${token}`)
+    navigate(`/coin/${token}`)
     
   }
   return (
