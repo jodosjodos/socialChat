@@ -6,10 +6,7 @@ import Chart from "./components/Graph/Graph";
 
 
 function App() {
-  
-  
-
-  return (
+   return (
 
     <>
       <div className="dark:bg-[#171717] min-h-screen">
@@ -17,8 +14,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />}></Route>
 
-            <Route path="/main/*" element={<MainPage />}></Route>
-            <Route path="/main/:token" element={<MainPage />}></Route>
+            <Route path="/main" element={<MainPage />}></Route>
+            
             <Route path="/profile" element={<Profile />}></Route>
           </Routes>
         </BrowserRouter>

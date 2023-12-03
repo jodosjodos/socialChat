@@ -7,7 +7,8 @@ import {
 } from "../reducer/coin";
 import { CoinList } from "../../components/config/api";
 
-export const getCoin = (currency,token) => async (dispatch) => {
+export const getCoin = (currency, token) => async (dispatch) => {
+  console.log(token)
   dispatch(loadCoinStart());
   try {
    const { data } = await axios.get(CoinList(currency));

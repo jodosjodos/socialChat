@@ -25,17 +25,15 @@ const CurrencyPairBeingUsed = () => {
 
 
   useEffect(() => {
-    if (coins && !coins.id) {
-      store.dispatch(getCoin(currency, token))
-    }
-    else {
+
+    
       async function fetchDetails() {
         const coinDetails = coins.id && await axios.get(SingleCoin(coins.id));
         console.log(coinDetails)
         
         setCoinInfo({ market_cap: coinDetails.data.market_data.market_cap.usd,supply:coinDetails.data.market_data.total_supply,holders:coinDetails.data.watchlist_portfolio_users,liquidity:coinDetails.data.liquidity_score});
         console.log(coinInfo);
-        }
+        
         
     
       if (!CoinInfo.market_cap) {
@@ -44,7 +42,7 @@ const CurrencyPairBeingUsed = () => {
      
       
     }
-  }, [token, coins, isDark]);
+  }, [coins, isDark]);
   
     
  
@@ -62,7 +60,7 @@ const CurrencyPairBeingUsed = () => {
   
   return (
     <>
-      {token&&loading!=true&&coins&&coins.id?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      {loading!=true&&coins&&coins.id?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
       
       <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
         <div className="flex flex-col md:min-w-fit sm:w-full w-full  items-center ">

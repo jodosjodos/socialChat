@@ -13,13 +13,16 @@ import {useSelector} from "react-redux"
 import ModeToggle from "../ModeToggle";
 import { store } from "../../redux/store";
 import { loadCoinStart } from "../../redux/reducer/coin";
+import { getCoin } from "../../redux/action/coin";
 const HeaderMain = ({ children }) => {
   const [sidebarOpened, setSidebarOpened] = useState(false)
   const {loading}=useSelector((state)=>state.coins)
     const savedTheme = localStorage.getItem("theme");
     const isDarkTheme = savedTheme === "dark";
     const loggedUserId = "0x95...0cc";
-    const [token, setToken] = useState()
+  const [token, setToken] = useState()
+  const currency = 'usd'
+    
 
   const navigate = useNavigate();
  
@@ -28,7 +31,9 @@ const HeaderMain = ({ children }) => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     store.dispatch(loadCoinStart())
-    await navigate(`/main/${token}`)
+    store.dispatch(getCoin(currency, token))
+    
+    await navigate(`/main`)
   
 
     
