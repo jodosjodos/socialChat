@@ -7,11 +7,15 @@ import PropTypes from "prop-types";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import {useSelector} from "react-redux"
 
 
 import ModeToggle from "../ModeToggle";
+import { store } from "../../redux/store";
+import { loadCoinStart } from "../../redux/reducer/coin";
 const HeaderMain = ({ children }) => {
   const [sidebarOpened, setSidebarOpened] = useState(false)
+  const {loading}=useSelector((state)=>state.coins)
     const savedTheme = localStorage.getItem("theme");
     const isDarkTheme = savedTheme === "dark";
     const loggedUserId = "0x95...0cc";
@@ -21,9 +25,12 @@ const HeaderMain = ({ children }) => {
  
   
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    navigate(`/main/${token}`)
+    store.dispatch(loadCoinStart())
+    await navigate(`/main/${token}`)
+  
+
     
   }
 
@@ -78,7 +85,7 @@ const HeaderMain = ({ children }) => {
             
             </input>
             <div className="absolute top-2.5 right-2">
-            <IoMdSearch size={20} color="gray"/>
+            <IoMdSearch size={20} color=" gray"/>
           </div>
           </div>
           </div>
