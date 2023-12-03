@@ -14,7 +14,6 @@ const CoinInfo = ({ coin }) => {
    
     const [coinInfo,setCoinInfo]=useState({})
 
-    console.log(coin)
     
     const savedTheme = localStorage.getItem("theme");
     let loggedInUser=null
@@ -43,7 +42,7 @@ const CoinInfo = ({ coin }) => {
     useEffect(() => {
       fetchHistoricData();
     }, [days, coin]);
-  console.log(coinDetails)
+
 
     const options = {
       plugins: {
