@@ -11,6 +11,6 @@ export const getHotPairs = () => async (dispatch) => {
     const data = await fetchDailyHotPairs();
     dispatch(loadingHotPairsSuccess(data));
   } catch (err) {
-    dispatch(loadingHotPairsFailure(err));
+    dispatch(loadingHotPairsFailure(err.message));
   }
 };

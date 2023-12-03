@@ -11,6 +11,7 @@ export const getGainers = () => async (dispatch) => {
     const data = await fetchDailyGainers();
     dispatch(loadGainersSuccess(data));
   } catch (err) {
-    dispatch(loadGainersFailure(err));
+    console.log(err);
+    dispatch(loadGainersFailure(err.message));
   }
 };

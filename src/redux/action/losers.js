@@ -7,6 +7,6 @@ export const getLosers = () => async (dispatch) => {
     const data = await fetchDailyLosers();
     dispatch(loadingLosersSuccess(data));
   } catch (err) {
-    dispatch(loadingLosersFailure(err));
+    dispatch(loadingLosersFailure(err.message));
   }
 };
