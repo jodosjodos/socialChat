@@ -1,6 +1,9 @@
 import { IoMdSearch } from "react-icons/io";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { store } from "../../redux/store";
+import { loadCoinStart } from "../../redux/reducer/coin";
+import { getCoin } from "../../redux/action/coin";
   
 
 function MiddleLogo() {
@@ -13,7 +16,10 @@ function MiddleLogo() {
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    return navigate(`/main/${token}`)
+    store.dispatch(loadCoinStart())
+    store.dispatch(getCoin('usd', token));
+
+    return navigate(`/main`)
     
   }
   return (

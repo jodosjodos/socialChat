@@ -7,6 +7,7 @@ const MainPage = ({ sidebarOpened, setSidebarOpened }) => {
 
 
 
+
   return (
     <div>
       <div className="flex w-full  flex-col gap-5 py-5 dark:bg-[#171717]">
