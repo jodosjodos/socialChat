@@ -9,9 +9,11 @@ import { getHotPairs } from "../redux/action/hotPairs";
 
 const Landing = () => {
   const dispatch = useDispatch();
-  const { gainers, loading } = useSelector((state) => state.gainers);
-  const { losers, loadingLosers } = useSelector((state) => state.losers);
-  const { hotPairs, loadingHotPairs } = useSelector((state) => state.hotPairs);
+  const { gainers, loading,error:gainerError } = useSelector((state) => state.gainers);
+  const { losers, loadingLosers, error:loserError } = useSelector((state) => state.losers);
+  const { hotPairs, loadingHotPairs , error :hotPairsError } = useSelector((state) => state.hotPairs);
+
+  // testing 
 
   const [currentData, setCurrentData] = useState([]);
   const [currentDataLosers, setCurrentDataLosers] = useState([]);
@@ -106,6 +108,10 @@ const Landing = () => {
             currentDataHotPairs={currentDataHotPairs}
             loadingHotPairs={loadingHotPairs}
             handleMoreHotPairs={handlePaginationHotPairs}
+            gainerError={gainerError}
+            loserError={loserError}
+            hotPairsError={hotPairsError}
+
           />
         </div>
       </div>
