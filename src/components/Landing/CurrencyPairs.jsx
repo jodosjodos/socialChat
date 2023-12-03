@@ -16,11 +16,11 @@ const CurrencyPairs = ({
   console.log(hotPairsError);
 
   return (
-    <div className="flex xl:flex-row flex-col gap-3 items-center justify-around">
+    <div className="flex xl:flex-row flex-col  items-center justify-around gap-3 px-24">
       <div className="flex flex-col w-[90%] min-w-[340px] px-3  gap-2 justify-center items-center ">
         <h1 className="text-[#898989] text-2xl">Daily Gainers</h1>
         <div
-          className={` border-2 rounded-xl flex flex-col gap-8  xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] h-[25rem] overflow-y-auto  ${
+          className={` border-2 rounded-xl flex flex-col gap-8   w-full border-[#E1E1E1] py-8  dark:border-none dark:bg-[#202020] h-[25rem] overflow-y-auto  ${
             gainerError ? "font-bold text-2xl px-20 justify-between" : ""
           }`}
         >
@@ -33,7 +33,7 @@ const CurrencyPairs = ({
               {!loading ? (
                 currentData.map((data) => (
                   <div
-                    className={`flex text-sm justify-around  flex-row gap-5  lg:gap-20`}
+                    className={`flex text-sm justify-around  flex-row gap-5  lg:gap-2`}
                     key={data.rank}
                   >
                     <p className="text-[#898989]">
@@ -68,7 +68,7 @@ const CurrencyPairs = ({
       <div className="flex flex-col gap-2 w-[90%] min-w-[340px] px-3 justify-center items-center">
         <h1 className="text-[#898989] text-2xl">Daily Losers</h1>
         <div
-          className={` border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] h-[25rem] overflow-y-auto  ${
+          className={` border-2 rounded-xl flex flex-col gap-8   w-full border-[#E1E1E1] py-8  dark:border-none dark:bg-[#202020] h-[25rem] overflow-y-auto  ${
             loserError ? "font-bold text-2xl px-20 justify-between" : ""
           }`}
         >
@@ -81,7 +81,7 @@ const CurrencyPairs = ({
               {!loadingLosers ? (
                 currentDataLosers.map((dataLosers) => (
                   <div
-                    className="flex text-sm justify-center  flex-row gap-5 lg:gap-20"
+                  className={`flex text-sm justify-around  flex-row gap-5  lg:gap-2`}
                     key={dataLosers.rank}
                   >
                     <p className="text-[#898989]">
@@ -119,9 +119,9 @@ const CurrencyPairs = ({
       <div className="flex px-3  w-[90%] min-w-[340px] flex-col gap-2 justify-center items-center">
         <h1 className="text-[#898989] text-2xl">Trending Pairs </h1>
         <div
-          className={`border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] h-[25rem] overflow-y-auto   ${
-            hotPairsError ? "font-bold text-2xl px-20 justify-between" : ""
-          }`}
+         className={` border-2 rounded-xl flex flex-col gap-8   w-full border-[#E1E1E1] py-8  dark:border-none dark:bg-[#202020] h-[25rem] overflow-y-auto  ${
+          hotPairsError ? "font-bold text-2xl px-20 justify-between" : ""
+        }`}
         >
           {hotPairsError?
             <div className={` flex justify-center items-center px-6`}>
@@ -132,7 +132,7 @@ const CurrencyPairs = ({
            {!loadingHotPairs ? (
             currentDataHotPairs.map((dataHotPairs) => (
               <div
-                className="flex text-sm justify-center  flex-row gap-5 lg:gap-20"
+              className={`flex text-sm justify-around  flex-row gap-5  lg:gap-2`}
                 key={dataHotPairs.rank}
               >
                 <p className="text-[#898989]">
