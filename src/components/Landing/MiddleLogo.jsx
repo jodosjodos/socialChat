@@ -11,7 +11,8 @@ function MiddleLogo() {
  
   
   
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     return navigate(`/main/${token}`)
     
   }

@@ -21,7 +21,8 @@ const HeaderMain = ({ children }) => {
  
   
   
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     navigate(`/main/${token}`)
     
   }

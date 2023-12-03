@@ -44,7 +44,6 @@ const CurrencyPairBeingUsed = () => {
      
       
     }
-    // ...
   }, [token, coins, isDark]);
   
     
@@ -63,24 +62,33 @@ const CurrencyPairBeingUsed = () => {
   
   return (
     <>
-      {token&&loading!=true&&coins.id?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      {token&&loading!=true&&coins&&coins.id?    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
       
       <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
-        <div className="flex flex-col min-w-fit w-full  items-center ">
+        <div className="flex flex-col md:min-w-fit sm:w-full w-full  items-center ">
           <h1 className="text-[#454545] font-semibold self-start">
             TOKEN DETAILS
           </h1>
-          <p className="bg-[#E1E1E1] dark:bg-[#454545] text-[#898989] w-full md:min-w-fit py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
+          <p className="bg-[#E1E1E1] dark:bg-[#454545]  text-[#898989] break-words w-full md:min-w-fit py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
               { coins&&coins.name}/{coins&&coins.platforms.ethereum}
           </p>
         </div>
-        <div className="flex md:flex-row md:gap-3 w-full md:text-[15px] text-[13px]  justify-between flex-1 px-2">
+        <div className="flex md:flex-row md:gap-3 flex-wrap md:flex-nowrap  w-full md:text-[15px] text-[13px]  justify-between flex-1 px-2">
         <div className="flex flex-col items-center">
           <h1 className="text-[#454545] font-semibold md:text-[15px]  ">MCAP</h1>
-          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5  rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-              {coinInfo&&coinInfo.market_cap}
-              12.3M
-          </p>
+          {coinInfo && coinInfo.market_cap != null && (
+          <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+          {coinInfo&&coinInfo.market_cap >= 1000000000000
+      ? `${(coinInfo.market_cap / 1000000000000).toFixed(2)} T`
+      : coinInfo.market_cap >= 1000000000
+      ? `${(coinInfo.market_cap / 1000000000).toFixed(2)} B`
+      : coinInfo.market_cap >= 1000000
+      ? `${(coinInfo.market_cap / 1000000).toFixed(2)} M`
+      : coinInfo.market_cap >= 1000
+      ? `${(coinInfo.market_cap / 1000).toFixed(2)} K`
+      : coinInfo.market_cap.toFixed(2)}
+                </p>
+                )}
         </div>
         <div className="flex flex-col">
           <h1 className="text-[#454545] font-semibold">LIQUIDITY</h1>
@@ -89,16 +97,37 @@ const CurrencyPairBeingUsed = () => {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-[#454545] font-semibold">SUPPLY</h1>
-          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-          {coinInfo&&coinInfo.supply}
-          </p>
+              <h1 className="text-[#454545] font-semibold">SUPPLY</h1>
+              {coinInfo && coinInfo.supply != null && (
+          <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+          {coinInfo&&coinInfo.supply >= 1000000000000
+      ? `${(coinInfo.supply / 1000000000000).toFixed(2)} T`
+      : coinInfo.supply >= 1000000000
+      ? `${(coinInfo.supply / 1000000000).toFixed(2)} B`
+      : coinInfo.supply >= 1000000
+      ? `${(coinInfo.supply / 1000000).toFixed(2)} M`
+      : coinInfo.supply >= 1000
+      ? `${(coinInfo.supply / 1000).toFixed(2)} K`
+      : coinInfo.supply.toFixed(2)}
+                </p>
+                )}
         </div>
+              
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-[#454545] font-semibold">HOLDERS</h1>
-          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-          {coinInfo&&coinInfo.holders}
-          </p>
+          {coinInfo && coinInfo.holders != null && (
+          <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+          {coinInfo&&coinInfo.holders >= 1000000000000
+      ? `${(coinInfo.holders / 1000000000000).toFixed(2)} T`
+      : coinInfo.holders >= 1000000000
+      ? `${(coinInfo.holders / 1000000000).toFixed(2)} B`
+      : coinInfo.holders >= 1000000
+      ? `${(coinInfo.holders / 1000000).toFixed(2)} M`
+      : coinInfo.holders >= 1000
+      ? `${(coinInfo.holders / 1000).toFixed(2)} K`
+      : coinInfo.holders.toFixed(2)}
+                </p>
+                )}
         </div>
         </div>
  
