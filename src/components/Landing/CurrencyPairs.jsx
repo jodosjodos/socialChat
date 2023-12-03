@@ -14,7 +14,7 @@ const CurrencyPairs = ({
     <div className="flex xl:flex-row flex-col gap-3 items-center justify-around">
       <div className="flex flex-col w-[90%] min-w-[340px] px-3  gap-2 justify-center items-center ">
         <h1 className="text-[#898989] text-2xl">Daily Gainers</h1>
-        <div className=" border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] max-h-96 overflow-y-scroll">
+        <div className=" border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] max-h-96 overflow-y-auto">
           {!loading ? (
             currentData.map((data) => (
               <div
@@ -50,7 +50,7 @@ const CurrencyPairs = ({
 
       <div className="flex flex-col gap-2 w-[90%] min-w-[340px] px-3 justify-center items-center">
         <h1 className="text-[#898989] text-2xl">Daily Losers</h1>
-        <div className=" border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] max-h-96 overflow-y-scroll">
+        <div className=" border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] max-h-96 overflow-y-auto">
           {!loadingLosers ? (
             currentDataLosers.map((dataLosers) => (
               <div
@@ -87,7 +87,7 @@ const CurrencyPairs = ({
       <div className="flex px-3  w-[90%] min-w-[340px] flex-col gap-2 justify-center items-center">
         <h1 className="text-[#898989] text-2xl">Trending Pairs </h1>
        
-        <div className=" border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] max-h-96 overflow-y-scroll">
+        <div className=" border-2 rounded-xl flex flex-col gap-8 xl:w-fit w-full border-[#E1E1E1] p-8 dark:border-none dark:bg-[#202020] max-h-96 overflow-y-auto">
           {!loadingHotPairs ? (
             currentDataHotPairs.map((dataHotPairs) => (
               <div
