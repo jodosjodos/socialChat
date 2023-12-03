@@ -23,20 +23,39 @@ const CurrencyPairBeingUsed = () => {
   
 
 
+
   useEffect(() => {
-    if (!coins.id) {
-      store.dispatch(getCoin(currency, token)).then(async () => {
-        console.log(coins.id)
-        const coinDetails =coins!=null?await axios.get(SingleCoin(coins.id)):""
-      
-        setCoinInfo({market_cap:coinDetails.data.market_data.market_cap.usd,supply:coinDetails.total_supply })
-      });
+    if (coins && !coins.id) {
+      store.dispatch(getCoin(currency, token))
     }
+    else {
+      async function fetchDetails() {
+        const coinDetails = coins.id && await axios.get(SingleCoin(coins.id));
+        console.log(coinDetails)
+        
+        setCoinInfo({ market_cap: coinDetails.data.market_data.market_cap.usd,supply:coinDetails.data.market_data.total_supply,holders:coinDetails.data.watchlist_portfolio_users,liquidity:coinDetails.data.liquidity_score});
+        console.log(coinInfo);
+        }
+        
+    
+      if (!CoinInfo.market_cap) {
+        fetchDetails()
+      }
+     
+      
+    }
+    // ...
+  }, [token, coins, isDark]);
+  
+    
  
 
     
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token,coinInfo,isDark]);
+
+   ;
+ 
+  
+  // console.log(coinInfo)
   const [isHovered, setIsHovered] = useState({ id: '', hovered: false })
   const height = "15m";
 
@@ -52,7 +71,7 @@ const CurrencyPairBeingUsed = () => {
             TOKEN DETAILS
           </h1>
           <p className="bg-[#E1E1E1] dark:bg-[#454545] text-[#898989] w-full md:min-w-fit py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
-            GROK/USD CA: 0x839...02d5 PAIR: 0x69...82a2{" "}
+              { coins&&coins.name}/{coins&&coins.platforms.ethereum}
           </p>
         </div>
         <div className="flex md:flex-row md:gap-3 w-full md:text-[15px] text-[13px]  justify-between flex-1 px-2">
@@ -66,19 +85,19 @@ const CurrencyPairBeingUsed = () => {
         <div className="flex flex-col">
           <h1 className="text-[#454545] font-semibold">LIQUIDITY</h1>
           <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-            1.5M
+            {coinInfo&&coinInfo.liquidity }
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-[#454545] font-semibold">SUPPLY</h1>
           <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-            6.9B
+          {coinInfo&&coinInfo.supply}
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-[#454545] font-semibold">HOLDERS</h1>
           <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-            12.8K
+          {coinInfo&&coinInfo.holders}
           </p>
         </div>
         </div>
@@ -89,11 +108,15 @@ const CurrencyPairBeingUsed = () => {
       </div>
 
 
-      </div> : <div className={`w-full h-[100vh] flex flex-col items-center fixed top-0  z-[2000] left-0  dark:bg-black bg-white text-black dark:text-white`}>
+      </div> : <div className={`w-full h-[100vh] flex flex-col justify-between items-center fixed top-0  z-[2000] left-0  dark:bg-black bg-white text-black dark:text-white`}>
           <HeaderMain><h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">Chatr</h1></HeaderMain>
-          <img src={isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"} className="w-[80%] md:w-[30%] max-w-[400px]" />
-          {loading!=true&& <p className="md:text-xl text-md">{error&&!loading=="Network Error"?"Something went wrong":"No token found with that address" }</p>}
+          <div className="w-full flex items-center justify-center flex-col">
+          <img src={isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"} className="w-[30%] md:w-[30%] max-w-[400px]" />
+          {loading!=true&& <p className="md:text-xl text-md">{!loading&&error=="Network Error"?"Something went wrong":"No token found with that address" }</p>}
          
+          </div>
+          <div></div>
+   
       </div>}
 
 </>
