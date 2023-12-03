@@ -27,20 +27,21 @@ const HeaderMain = ({ children }) => {
     
   }
 
+
   return (
     <div className="flex top-0 left-0 right-0 flex-row items-center justify-between md:p-5 p-2 w-full">
       <Link
  to="/" className="">
        {children}
       </Link>
-      <form className="lg:flex hidden flex-row items-center gap-3"  onSubmit={handleSubmit}>
+      <form method="post" className="lg:flex hidden flex-row items-center gap-3"  onSubmit={handleSubmit}>
         <input
           type="text"
           name="search"
           className="bg-[#E1E1E1] rounded-lg outline-none px-3 w-[420px] h-[28px] dark:bg-[#898989]"
           onChange={(e)=>setToken(e.target.value)}
         />
-        <button>
+        <button type="submit">
         <IoMdSearch color={`${isDarkTheme ? "#898989" : "#E1E1E1"}`} size={38} />
       
         </button>
