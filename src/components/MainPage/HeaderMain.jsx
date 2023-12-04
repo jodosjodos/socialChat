@@ -7,59 +7,58 @@ import PropTypes from "prop-types";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import {useSelector} from "react-redux"
-
+import { useSelector } from "react-redux";
 
 import ModeToggle from "../ModeToggle";
 import { store } from "../../redux/store";
-import { loadCoinStart } from "../../redux/reducer/coin";
-import { getCoin } from "../../redux/action/coin";
+import { loadCoinStart } from "../../redux/reducer/token";
+import { getToken } from "../../redux/action/token";
+import { getMarkets } from "../../redux/action/markets";
 const HeaderMain = ({ children }) => {
-  const [sidebarOpened, setSidebarOpened] = useState(false)
-  const {loading}=useSelector((state)=>state.coins)
-    const savedTheme = localStorage.getItem("theme");
-    const isDarkTheme = savedTheme === "dark";
-    const loggedUserId = "0x95...0cc";
-  const [token, setToken] = useState()
-  const currency = 'usd'
-    
+  const [sidebarOpened, setSidebarOpened] = useState(false);
+  const { loading } = useSelector((state) => state.tokens);
+  const savedTheme = localStorage.getItem("theme");
+  const isDarkTheme = savedTheme === "dark";
+  const loggedUserId = "0x95...0cc";
+  const [token, setToken] = useState();
+  const currency = "usd";
 
   const navigate = useNavigate();
- 
-  
-  
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    store.dispatch(loadCoinStart())
-    store.dispatch(getCoin(currency, token))
-    
-    await navigate(`/main`)
-  
 
-    
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    store.dispatch(loadCoinStart());
+    store.dispatch(getToken(currency, token));
+    store.dispatch(getMarkets('usd',token))
 
+    await navigate(`/main`);
+  };
 
   return (
     <div className="flex top-0 left-0 right-0 flex-row items-center justify-between md:p-5 p-2 w-full">
-      <Link
- to="/" className="">
-       {children}
+      <Link to="/" className="">
+        {children}
       </Link>
-      <form method="post" className="lg:flex hidden flex-row items-center gap-3"  onSubmit={handleSubmit}>
+      <form
+        method="post"
+        className="lg:flex hidden flex-row items-center gap-3"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           name="search"
           className="bg-[#E1E1E1] rounded-lg outline-none px-3 w-[420px] h-[28px] dark:bg-[#898989]"
-          onChange={(e)=>setToken(e.target.value)}
+          onChange={(e) => setToken(e.target.value)}
         />
         <button type="submit">
-        <IoMdSearch color={`${isDarkTheme ? "#898989" : "#E1E1E1"}`} size={38} />
-      
+          <IoMdSearch
+            color={`${isDarkTheme ? "#898989" : "#E1E1E1"}`}
+            size={38}
+          />
         </button>
       </form>
       <div className="lg:flex  hidden flex-row gap-3 items-center">
-      <ModeToggle />
+        <ModeToggle />
         <div>
           <img src="/images/greenDot.png" />
         </div>
@@ -68,53 +67,55 @@ const HeaderMain = ({ children }) => {
           {loggedUserId}
         </p>
 
-        <Link  to="/profile">
+        <Link to="/profile">
           <FaUser color="#E1E1E1" size={28} />
-        </Link >
+        </Link>
       </div>
       <div className="lg:hidden block">
-      <CgMenuRightAlt size={34} className="dark:text-white" onClick={()=>setSidebarOpened(true)} />
-
+        <CgMenuRightAlt
+          size={34}
+          className="dark:text-white"
+          onClick={() => setSidebarOpened(true)}
+        />
       </div>
 
-      {sidebarOpened && <div className="fixed z-[1200] shadow-md flex flex-col justify-between max-w-[500px] lg:hidden blok top-0 right-0 h-screen w-[80%] min-w-[200px]  bg-white dark:bg-[#171717] py-3 px-3">
+      {sidebarOpened && (
+        <div className="fixed z-[1200] shadow-md flex flex-col justify-between max-w-[500px] lg:hidden blok top-0 right-0 h-screen w-[80%] min-w-[200px]  bg-white dark:bg-[#171717] py-3 px-3">
           <div className="w-full">
-          <div className="w-full flex justify-between pt-2 pb-8">
-          <ModeToggle />
-            <IoMdClose size={20}  className="dark:text-white" onClick={()=>setSidebarOpened(false)}/>
-          </div>
-  
-          <div className="relative w-full">
+            <div className="w-full flex justify-between pt-2 pb-8">
+              <ModeToggle />
+              <IoMdClose
+                size={20}
+                className="dark:text-white"
+                onClick={() => setSidebarOpened(false)}
+              />
+            </div>
 
-          <input className=" h-[40px] w-full rounded-md da dark:bg-black dark:text-white bg-[#E1E1E1] px-3" placeholder="Search here ...">
-            
-            </input>
-            <div className="absolute top-2.5 right-2">
-            <IoMdSearch size={20} color=" gray"/>
-          </div>
-          </div>
+            <div className="relative w-full">
+              <input
+                className=" h-[40px] w-full rounded-md da dark:bg-black dark:text-white bg-[#E1E1E1] px-3"
+                placeholder="Search here ..."
+              ></input>
+              <div className="absolute top-2.5 right-2">
+                <IoMdSearch size={20} color=" gray" />
+              </div>
+            </div>
           </div>
           <div className="flex flex-col gap-3">
-      
-          <Link to='/profile' className="flex gap-3 justify-center  bg-green-700 py-[8.5px] rounded-md items-center ">
-            
-          <FaUser color="white" size={25} />
-              <p className="text-white">
-              {loggedUserId}
-     
-        </p>
+            <Link
+              to="/profile"
+              className="flex gap-3 justify-center  bg-green-700 py-[8.5px] rounded-md items-center "
+            >
+              <FaUser color="white" size={25} />
+              <p className="text-white">{loggedUserId}</p>
+            </Link>
 
-     
-        </Link >
-
-          <button className="bg-[#E1E1E1] dark:bg-black dark:text-white py-[8.5px] justify-center flex items-center w-full rounded-md">
-            Logout <IoMdLogOut size={20}/>
-          </button>
+            <button className="bg-[#E1E1E1] dark:bg-black dark:text-white py-[8.5px] justify-center flex items-center w-full rounded-md">
+              Logout <IoMdLogOut size={20} />
+            </button>
           </div>
-
-
-          
-          </div>}
+        </div>
+      )}
     </div>
   );
 };

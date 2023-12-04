@@ -4,13 +4,13 @@ import { users } from "../../data/user";
 const initialState = {
   loading: false,
 
-  coins: {}, // Corrected the property name
+  tokens: {}, // Corrected the property name
   isAuthenticated: false,
   error: null,
 };
 
-const coinSlice = createSlice({
-  name: "coinReducer",
+const tokenSlice = createSlice({
+  name: "tokenReducer",
   initialState,
   reducers: {
     loadCoinStart: (state) => {
@@ -18,7 +18,7 @@ const coinSlice = createSlice({
     },
     loadCoinSuccess: (state, action) => {
       state.loading = false;
-      state.coins = action.payload // Corrected the property name
+      state.tokens = action.payload; // Corrected the property name
     },
     loadCoinFailure: (state, action) => {
       state.loading = false;
@@ -27,10 +27,7 @@ const coinSlice = createSlice({
   },
 });
 
-export const {
-  loadCoinStart,
-  loadCoinFailure,
-  loadCoinSuccess,
-} = coinSlice.actions;
+export const { loadCoinStart, loadCoinFailure, loadCoinSuccess } =
+  tokenSlice.actions;
 
-export default coinSlice.reducer;
+export default tokenSlice.reducer;
