@@ -36,7 +36,7 @@ export const getMarkets = (currency, token) => async (dispatch) => {
  
 
     if (!single_token) {
-      dispatch(loadMarketFailure("No token found with that address"));
+      // dispatch(loadMarketFailure("No token found with that address"));
     } else {
       console.log("success");
     
@@ -45,7 +45,7 @@ export const getMarkets = (currency, token) => async (dispatch) => {
   } catch (err) {
     console.log("error");
     console.log(err.message);
-    dispatch(loadMarketFailure(err.message));
+    // dispatch(loadMarketFailure(err.message));
   }
 };
 
