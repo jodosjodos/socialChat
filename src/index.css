@@ -22,4 +22,12 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: #555; 
   }
-  
+  .tv-lightweight-charts{
+    width: 100%;
+  }
+  table{
+    width: 100% !important;
+  }
+  canvas{
+    width: 100% !important;
+  }
