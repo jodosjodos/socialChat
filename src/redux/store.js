@@ -12,6 +12,6 @@ export const store = configureStore({
     losers: losersReducer,
     hotPairs: hotPairsReducer,
     tokens: tokenReducer,
-    markets:marketReducer
+    symbol:marketReducer
   },
 });

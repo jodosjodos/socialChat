@@ -7,8 +7,8 @@ export const SingleToken = (token_address) =>
 export const Pairs = (token) =>
   `https://api.dexscreener.com/latest/dex/tokens/${token}`;
 
-export const HistoricalChart = (token, from, to, resolution = "5") =>
-  `https://api.dev.dex.guru/v1/tradingview/history?symbol=${token}-eth_USD&resolution=${resolution}&from=${from}&to=${to}`;
+export const HistoricalChart = (token) =>
+  `https://api.geckoterminal.com/api/v2/networks/eth/pools/${token}`;
 
 export const TrendingCoins = (currency) =>
   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;

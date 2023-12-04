@@ -31,6 +31,7 @@ const CandlestickChart = () => {
         upColor: '#26a69a',
         downColor: '#ef5350',
         borderVisible: true,
+        borderWidth:"20px",
         wickUpColor: '#26a69a',
         wickDownColor: '#ef5350',
         priceFormat: {
