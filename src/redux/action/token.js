@@ -4,7 +4,7 @@ import {
   loadCoinStart,
   loadCoinSuccess,
 } from "../reducer/token";
-import { CoinList, SingleToken } from "../../components/config/api";
+import {SingleToken } from "../../components/config/api";
 const options = {
   method: "GET",
   headers: {
@@ -12,7 +12,7 @@ const options = {
     "api-key": "7L579IJz8VH1QZLYU03yLjwRTxoB8OPoSeAuUijU0pM",
   },
 };
-export const getToken = (currency, token) => async (dispatch) => {
+export const getToken = (token) => async (dispatch) => {
   console.log(token);
   dispatch(loadCoinStart());
   try {

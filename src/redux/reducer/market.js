@@ -4,13 +4,10 @@ import { users } from "../../data/user";
 const initialState = {
   loading: false,
 
-  markets: [], // Corrected the property name
+  symbol: [], // Corrected the property name
   isAuthenticated: false,
   error: null,
 };
-
-
-
 
 const marketSlice = createSlice({
   name: "marketReducer",
@@ -21,7 +18,7 @@ const marketSlice = createSlice({
     },
     loadMarketSuccess: (state, action) => {
       state.loading = false;
-      state.markets = action.payload; // Corrected the property name
+      state.symbol = action.payload; // Corrected the property name
     },
     loadMarketFailure: (state, action) => {
       state.loading = false;

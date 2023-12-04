@@ -28,8 +28,8 @@ const HeaderMain = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     store.dispatch(loadCoinStart());
-    store.dispatch(getToken(currency, token));
-    store.dispatch(getMarkets('usd',token))
+    // store.dispatch(getToken(token));
+    store.dispatch(getMarkets(token))
 
     await navigate(`/main`);
   };

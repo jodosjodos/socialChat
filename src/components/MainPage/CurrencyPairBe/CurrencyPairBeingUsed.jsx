@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import CoinInfo from "../../Graph/Graph";
 import axios from "axios";
 
-import { CoinList, Pairs, SingleToken } from "../../config/api";
+import {  Pairs,} from "../../config/api";
 import HeaderMain from "../HeaderMain";
 import { useSelector } from "react-redux";
 import CandlestickChart from "../../Graph/Chart";
+import TradingViewWidget from "../../Graph/Graph";
+import { store } from "../../../redux/store";
+import { getMarkets } from "../../../redux/action/markets";
 
 function convertDateToUnixTimestamp(date) {
   return Math.floor(new Date(date).getTime() / 1000);
@@ -17,39 +20,40 @@ const CurrencyPairBeingUsed = () => {
   const [tokenInfo, setTokenInfo] = useState({});
   const savedTheme = localStorage.getItem("theme");
   const isDark = savedTheme === "dark";
-  const { token } = useParams();
+
   const { tokens, loading, error } = useSelector((state) => state.tokens);
-  const {markets}=useSelector((state)=>state.markets)
-  const currency = "usd";
-  const symbol = "$";
+  const { symbol } = useSelector((state) => state.symbol);
+  
+
+  
 
   useEffect(() => {
     async function fetchDetails() {
       const pairs =
-  tokens.address &&
-  (await axios.get(Pairs(tokens && tokens.address)));
-console.log("pairs");
+        tokens.address && (await axios.get(Pairs(tokens && tokens.address)));
+      console.log("pairs");
+      store.dispatch(getMarkets(tokens.address))
+      
 
 
-setTokenInfo({
-  market_cap: 0,
-  supply: tokens&&tokens.token_supply,
-  holders: 0,
-  liquidity: pairs.data.pairs!=null ? pairs.data.pairs[0].liquidity.usd:0,
-});
-
-     
+      setTokenInfo({
+        market_cap: 0,
+        supply: tokens && tokens.token_supply,
+        holders: 0,
+        liquidity:
+          pairs.data.pairs != null ? pairs.data.pairs[0].liquidity.usd : 0,
+      });
     }
     if (!tokenInfo.liquidity) {
       console.log("Hello ");
       fetchDetails();
     }
-  }, [tokens,markets, isDark]);
+  }, [tokens, symbol, isDark]);
 
   // console.log(tokenInfo)
   const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
   const height = "15m";
-  console.log(error)
+  console.log(error);
 
   return (
     <>
@@ -135,7 +139,7 @@ setTokenInfo({
             </div>
           </div>
           <div className="w-full">
-            <CandlestickChart markets={markets} />
+            <TradingViewWidget theme={savedTheme} />
           </div>
         </div>
       ) : (
@@ -157,7 +161,7 @@ setTokenInfo({
             {loading && <p>Loading</p>}
             {loading != true && (
               <p className="md:text-xl text-md">
-                { error == "Network Error"
+                {error == "Network Error"
                   ? "Something went wrong"
                   : "No token found with that address"}
               </p>

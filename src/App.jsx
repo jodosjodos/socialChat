@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import Profile from "./pages/Profile";
 import Chart from "./components/Graph/Graph";
 import CandlestickChart from "./components/Graph/Chart";
+import TradingViewWidget from "./components/Graph/Graph";
 
 
 function App() {
@@ -84,7 +85,7 @@ function App() {
             <Route path="/" element={<Landing />}></Route>
             <Route path="/chart" element={<CandlestickChart data={data} />}></Route>
             <Route path="/main" element={<MainPage />}></Route>
-            
+            {/* <Route path="/graph" element={<TradingViewWidget/>}/> */}
             <Route path="/profile" element={<Profile />}></Route>
           </Routes>
         </BrowserRouter>
