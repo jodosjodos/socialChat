@@ -9,12 +9,23 @@ const CandlestickChart = () => {
   useEffect(() => {
     if (markets.length > 0) {
       const chartOptions = {
-        
         layout: {
           textColor: 'black',
-          background: { type: 'solid', color: 'white' },
+          backgroundColor: '#fff', // Set the background color
+        },
+        grid: {
+          vertLines: {
+            color: '#e5e5e5', // Vertical grid line color
+          },
+          horzLines: {
+            color: '#e5e5e5', // Horizontal grid line color
+          },
+        },
+        crosshair: {
+          mode: 0,
         },
       };
+
       const chart = createChart(document.getElementById('container'), chartOptions);
       const candlestickSeries = chart.addCandlestickSeries({
         upColor: '#26a69a',
@@ -38,21 +49,16 @@ const CandlestickChart = () => {
             high: item.h[index],
             low: item.l[index],
             close: item.c[index],
-            time: item.t[index],
+            time: new Date((item.t[index])/1000).getTime(),
           });
         });
       });
-
-      console.log("---data---");
-      console.log(newData);
 
       setMarketData(newData);
       candlestickSeries.setData(newData);
       chart.timeScale().fitContent();
     }
   }, [markets]);
-
-  console.log(markets);
 
   return <div id="container" className='w-full h-[400px]'></div>;
 };

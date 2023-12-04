@@ -17,7 +17,7 @@ const getHistoricalChartTimestamps = (toDate,days) => {
   const to = toDate;
 
   // Calculate one day in milliseconds
-  const oneDayInMillis = 24 * 60 * 60 * 1000;
+  const oneDayInMillis = 24 * 60 * 60 * 1000*days;
 
   // Calculate 'from' by subtracting one day from 'to'
   const from = to - oneDayInMillis;
@@ -29,7 +29,7 @@ export const getMarkets = (currency, token) => async (dispatch) => {
   console.log(token);
   dispatch(loadMarketStart());
   try {
-    let {from,to}=getHistoricalChartTimestamps(Date.now(),356)
+    let {from,to}=getHistoricalChartTimestamps(Date.now(),6)
     const { data } = await axios.get(HistoricalChart(token,from,to), options);
     let single_token = data;
     console.log("market data");
