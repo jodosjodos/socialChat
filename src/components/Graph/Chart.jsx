@@ -30,13 +30,13 @@ const CandlestickChart = () => {
       const candlestickSeries = chart.addCandlestickSeries({
         upColor: '#26a69a',
         downColor: '#ef5350',
-        borderVisible: false,
+        borderVisible: true,
         wickUpColor: '#26a69a',
         wickDownColor: '#ef5350',
         priceFormat: {
           type: 'price',
-          precision: 8,
-          minMove: 0.000001,
+          precision: 12,
+          minMove: 0.000000000000001,
         },
       });
 
@@ -60,7 +60,7 @@ const CandlestickChart = () => {
     }
   }, [markets]);
 
-  return <div id="container" className='w-full h-[400px]'></div>;
+  return <div id="container" className='w-full h-[600px]'></div>;
 };
 
 export default CandlestickChart;

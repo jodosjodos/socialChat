@@ -29,13 +29,13 @@ const CurrencyPairBeingUsed = () => {
   tokens.address &&
   (await axios.get(Pairs(tokens && tokens.address)));
 console.log("pairs");
-console.log(pairs.data.pairs[0].liquidity.usd);
+
 
 setTokenInfo({
   market_cap: 0,
   supply: tokens&&tokens.token_supply,
   holders: 0,
-  liquidity: pairs.data.pairs && pairs.data.pairs[0].liquidity.usd,
+  liquidity: pairs.data.pairs!=null ? pairs.data.pairs[0].liquidity.usd:0,
 });
 
      
