@@ -29,7 +29,7 @@ export const getMarkets = (currency, token) => async (dispatch) => {
   console.log(token);
   dispatch(loadMarketStart());
   try {
-    let {from,to}=getHistoricalChartTimestamps(Date.now(),6)
+    let {from,to}=getHistoricalChartTimestamps(Date.now(),1)
     const { data } = await axios.get(HistoricalChart(token,from,to), options);
     let single_token = data;
     console.log("market data");
