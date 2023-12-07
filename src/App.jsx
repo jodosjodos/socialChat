@@ -4,11 +4,8 @@ import MainPage from "./pages/MainPage";
 import Profile from "./pages/Profile";
 
 
-
 function App() {
-  let data = {
-  }
-
+  
    return (
 
     <>

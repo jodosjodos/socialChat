@@ -4,7 +4,6 @@ import {
   loadMarketStart,
   loadMarketSuccess,
 } from "../reducer/market";
-import { HistoricalChart } from "../../components/config/api";
 const options = {
   method: "GET",
   headers: {

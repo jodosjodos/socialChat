@@ -4,7 +4,7 @@ import {
   loadCoinStart,
   loadCoinSuccess,
 } from "../reducer/token";
-import {SingleToken } from "../../components/config/api";
+
 const options = {
   method: "GET",
   headers: {
