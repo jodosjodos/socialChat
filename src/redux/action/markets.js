@@ -23,10 +23,60 @@ export const getMarkets = (token) => async (dispatch) => {
     const { data } = token && await axios.get(HistoricalChart(token));
     console.log('----data----')
     console.log(data.data)
-    const symbol = await axios.get(`https://symbol-search.tradingview.com/symbol_search/v3/?text=${data.data.attributes && removeWhitespace(data.data.attributes.name)}&hl=1&exchange=&lang=en&search_type=undefined&domain=production&sort_by_country=US`, { headers: { 'Origin': "https://www.tradingview.com", 'Referer':'https://www.tradingview.com/'}})
-    let symbolName = symbol;
-    console.log("symbol");
-    console.log(symbol)
+
+const options = {
+  method: 'POST',
+  url: 'https://scanner.tradingview.com/crypto/scan',
+  headers: {
+    'Content-Type': 'application/json',
+    'User-Agent': 'insomnia/2023.5.8',
+    'api-key': '7L579IJz8VH1QZLYU03yLjwRTxoB8OPoSeAuUijU0pM',
+    Origin: 'symbol-search.tradingview.com'
+  },
+  data: {
+    filter: [{left: 'name,description', operation: 'match', right: 'WETH'}],
+    options: {lang: 'en'},
+    markets: ['crypto'],
+    symbols: {query: {types: []}, tickers: []},
+    columns: [
+      'base_currency_logoid',
+      'currency_logoid',
+      'name',
+      'close',
+      'change',
+      'change_abs',
+      'high',
+      'low',
+      'volume',
+      '24h_vol|5',
+      '24h_vol_change|5',
+      'Recommend.All',
+      'exchange',
+      'description',
+      'type',
+      'subtype',
+      'update_mode',
+      'pricescale',
+      'minmov',
+      'fractional',
+      'minmove2'
+    ],
+    sort: {sortBy: 'name', sortOrder: 'asc'},
+    price_conversion: {to_symbol: false},
+    range: [0, 150]
+  }
+};
+
+    axios.request(options)
+      .then(async function(response) {
+        let symbol = await response.data[0];
+  let symbolName = symbol;
+  console.log("symbol");
+  console.log(symbol)
+}).catch(function (error) {
+  console.error(error);
+});
+   
     
  
 
