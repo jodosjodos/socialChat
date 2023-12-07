@@ -3,7 +3,7 @@ import USers from "../components/MainPage/CurrencyPairBe/USers";
 import HeaderMain from "../components/MainPage/HeaderMain";
 
 
-const MainPage = ({ sidebarOpened, setSidebarOpened }) => {
+const MainPage = () => {
 
 
 
