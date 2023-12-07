@@ -4,7 +4,7 @@ import { users } from "../../data/user";
 const initialState = {
   loading: false,
 
-  comments: [], // Corrected the property name
+  comments: null, // Corrected the property name
   isAuthenticated: false,
   error: null,
 };
@@ -18,7 +18,7 @@ const commentSlice = createSlice({
     },
     loadCommentSuccess: (state, action) => {
       state.loading = false;
-      state.comments = [...state.comments, action.payload]; // Corrected the property name
+      state.comments = [action.payload]; // Corrected the property name
     },
     loadCommentFailure: (state, action) => {
       state.loading = false;

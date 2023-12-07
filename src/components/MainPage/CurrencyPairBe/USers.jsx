@@ -12,19 +12,31 @@ function USers() {
   const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
 
   const savedTheme = localStorage.getItem("theme");
+  const { comments } = useSelector((state) => state.comments)
   let loggedInUser = {
     id: 56 ,
     name: "Traderx69",
     votes:'54',
     profile: "/images/profile1.png",
   }
+  function flattenArray(arr) {
+    return arr!=null?arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []):[];
+  }
+  
+  // Example usage:
+ 
+  const modifiedComments = flattenArray(comments);
+ console.log(modifiedComments)
+  
   useEffect(() => {
     store.dispatch(loadComment(loggedInUser))
-  },[])
+  }, [store.dispatch])
+  
+ 
   // let loggedInUser=null
-
+  console.log(comments)
   const isDarkTheme = savedTheme === "dark";
-  const { comments } = useSelector((state) => state.comments)
+
   const [loginPopup,setLoginPopup]=useState(false)
   const [comment,setComment]=useState("")
   const handleComment = () => {
@@ -36,7 +48,7 @@ function USers() {
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] dark:bg-[#202020] ">
       <div className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
-        {comments.map((user) => (
+        {modifiedComments.length>0&&modifiedComments.map((user) => (
           <div
             key={user.id}
             className="flex flex-row relative  items-center justify-between"
@@ -50,11 +62,11 @@ function USers() {
                 onMouseLeave={() => setIsHovered({ id: "", hovered: false })}
               >
                 {isHovered.id == user.id && isHovered.hovered && (
-                  <div className="flex flex-col gap-8 bg-white border-4 top-[-400px] left-0  rounded-2xl  z-[100]  p-5 absolute  dark:bg-[#202020] dark:border-[#333333]">
+                  <div className="flex flex-col gap-8 z-[1000] bg-white border-4 top-[-400px] left-0  rounded-2xl    p-5 absolute  dark:bg-[#202020] dark:border-[#333333]">
                     <div className="flex flex-row items-center gap-10">
                       <div>
                         <img
-                          src={user.profile}
+                          src={user.comment.profile}
                           alt=" user profile"
                           className="w-[91px] h-[91px]"
                         />
@@ -119,7 +131,7 @@ function USers() {
                   </div>
                 )}
                 <img
-                  src={user.profile}
+                  src={user.comment.profile}
                   alt="user profile"
                   className="min-w-[48px] min-h-[48px] max-h-[54px] max-w-[54px] object-contain"
                 />
@@ -127,10 +139,10 @@ function USers() {
               <div className="flex flex-col">
                 <div className="flex flex-row gap-2 items-center">
                   <h1 className="text-[#898989] font-bold md:text-xl text-md">
-                    {user.name}
+                    {user.comment.name}
                   </h1>
                   <p className="text-[#4B4B4B] font-bold md:text-xl text-md">
-                    {user.time}
+                    {user.comment.time}
                   </p>
                   <FaReply
                     color="#898989"
@@ -138,7 +150,7 @@ function USers() {
                   />
                 </div>
 
-                <p className="text-[#898989]  md:text-2xl">{user.msg}</p>
+                <p className="text-[#898989]  md:text-2xl">{user.comment.msg}</p>
               </div>
             </div>
             {/* show profile */}

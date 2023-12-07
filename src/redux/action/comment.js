@@ -23,7 +23,7 @@ export const loadComment = () => async (dispatch) => {
     const q = query(collection(firestore, 'comments'), orderBy('timestamp', 'desc'));
     const snapshot = await getDocs(q);
     const commentsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    dispatch(loadCommentSuccess(commentsData));
+    dispatch(loadCommentSuccess(commentsData&&commentsData.length>0&&commentsData));
   } catch (error) {
     dispatch(loadCommentFailure(error.message));
   }
