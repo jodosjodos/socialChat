@@ -1,176 +1,107 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import CoinInfo from "../../Graph/Graph";
-import axios from "axios";
-
-import {  Pairs,} from "../../config/api";
-import HeaderMain from "../HeaderMain";
-import { useSelector } from "react-redux";
-import CandlestickChart from "../../Graph/Chart";
-import TradingViewWidget from "../../Graph/Graph";
-import { store } from "../../../redux/store";
-import { getMarkets } from "../../../redux/action/markets";
-
-function convertDateToUnixTimestamp(date) {
-  return Math.floor(new Date(date).getTime() / 1000);
-}
+import { useState } from "react";
+import { timeChanges } from "../../../data/timeChange";
+import { usersWithVotes } from "../../../data/user";
 
 const CurrencyPairBeingUsed = () => {
-  const [tokenInfo, setTokenInfo] = useState({});
-  const savedTheme = localStorage.getItem("theme");
-  const isDark = savedTheme === "dark";
+  const [isHovered,setIsHovered]=useState({id:'',hovered:false})
 
-  const { tokens, loading, error } = useSelector((state) => state.tokens);
-  const { symbol } = useSelector((state) => state.symbol);
-  
-
-  
-
-  useEffect(() => {
-    async function fetchDetails() {
-      const pairs =
-        tokens.address && (await axios.get(Pairs(tokens && tokens.address)));
-      console.log("pairs");
-      store.dispatch(getMarkets(tokens.address))
-      
-
-
-      setTokenInfo({
-        market_cap: 0,
-        supply: tokens && tokens.token_supply,
-        holders: 0,
-        liquidity:
-          pairs.data.pairs != null ? pairs.data.pairs[0].liquidity.usd : 0,
-      });
-    }
-    if (!tokenInfo.liquidity) {
-      console.log("Hello ");
-      fetchDetails();
-    }
-  }, [tokens, symbol, isDark]);
-
-  // console.log(tokenInfo)
-  const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
   const height = "15m";
-  console.log(error);
-
+  console.log('is')
+  //  use margin to adjust  border to fit similar to image and user
   return (
-    <>
-      {loading != true && tokens && tokens.address ? (
-        <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
-          <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
-            <div className="flex flex-col md:min-w-fit sm:w-full w-full  items-center ">
-              <h1 className="text-[#454545] font-semibold self-start">
-                TOKEN DETAILS
-              </h1>
-              <p className="bg-[#E1E1E1] dark:bg-[#454545]  text-[#898989] break-words w-full md:min-w-fit py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
-                {tokens && tokens.name}/{tokens && tokens.address}
-              </p>
-            </div>
-            <div className="flex md:flex-row md:gap-3 flex-wrap md:flex-nowrap  w-full md:text-[15px] text-[13px]  justify-between flex-1 px-2">
-              <div className="flex flex-col items-center">
-                <h1 className="text-[#454545] font-semibold md:text-[15px]  ">
-                  MCAP
-                </h1>
-                {tokenInfo && tokenInfo.market_cap != null && (
-                  <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-                    {tokenInfo && tokenInfo.market_cap >= 1000000000000
-                      ? `${(tokenInfo.market_cap / 1000000000000).toFixed(2)} T`
-                      : tokenInfo.market_cap >= 1000000000
-                      ? `${(tokenInfo.market_cap / 1000000000).toFixed(2)} B`
-                      : tokenInfo.market_cap >= 1000000
-                      ? `${(tokenInfo.market_cap / 1000000).toFixed(2)} M`
-                      : tokenInfo.market_cap >= 1000
-                      ? `${(tokenInfo.market_cap / 1000).toFixed(2)} K`
-                      : tokenInfo.market_cap.toFixed(2)}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <h1 className="text-[#454545] font-semibold">LIQUIDITY</h1>
-                {tokenInfo && tokenInfo.liquidity != null && (
-                  <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-                    {tokenInfo && tokenInfo.liquidity >= 1000000000000
-                      ? `${(tokenInfo.liquidity / 1000000000000).toFixed(2)} T`
-                      : tokenInfo.liquidity >= 1000000000
-                      ? `${(tokenInfo.liquidity / 1000000000).toFixed(2)} B`
-                      : tokenInfo.liquidity >= 1000000
-                      ? `${(tokenInfo.liquidity / 1000000).toFixed(2)} M`
-                      : tokenInfo.liquidity >= 1000
-                      ? `${(tokenInfo.liquidity / 1000).toFixed(2)} K`
-                      : tokenInfo.liquidity.toFixed(2)}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[#454545] font-semibold">SUPPLY</h1>
-                {tokenInfo && tokenInfo.supply != null && (
-                  <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-                    {tokenInfo && tokenInfo.supply >= 1000000000000
-                      ? `${(tokenInfo.supply / 1000000000000).toFixed(2)} T`
-                      : tokenInfo.supply >= 1000000000
-                      ? `${(tokenInfo.supply / 1000000000).toFixed(2)} B`
-                      : tokenInfo.supply >= 1000000
-                      ? `${(tokenInfo.supply / 1000000).toFixed(2)} M`
-                      : tokenInfo.supply >= 1000
-                      ? `${(tokenInfo.supply / 1000).toFixed(2)} K`
-                      : tokenInfo.supply.toFixed(2)}
-                  </p>
-                )}
-              </div>
-
-              <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[#454545] font-semibold">HOLDERS</h1>
-                {tokenInfo && tokenInfo.holders != null && (
-                  <p className="bg-[#E1E1E1] min-w-max text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
-                    {tokenInfo && tokenInfo.holders >= 1000000000000
-                      ? `${(tokenInfo.holders / 1000000000000).toFixed(2)} T`
-                      : tokenInfo.holders >= 1000000000
-                      ? `${(tokenInfo.holders / 1000000000).toFixed(2)} B`
-                      : tokenInfo.holders >= 1000000
-                      ? `${(tokenInfo.holders / 1000000).toFixed(2)} M`
-                      : tokenInfo.holders >= 1000
-                      ? `${(tokenInfo.holders / 1000).toFixed(2)} K`
-                      : tokenInfo.holders.toFixed(2)}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="w-full">
-            <TradingViewWidget theme={savedTheme} />
-          </div>
+    <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
+      <div className="flex w-full overflow-x-auto md:flex-row flex-col justify-stretch lg:gap-20 md:gap-15 gap-3 items-center">
+        <div className="flex flex-col min-w-fit w-full  items-center ">
+          <h1 className="text-[#454545] font-semibold self-start">
+            TOKEN DETAILS
+          </h1>
+          <p className="bg-[#E1E1E1] dark:bg-[#454545] text-[#898989] w-full md:min-w-fit py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer">
+            GROK/USD CA: 0x839...02d5 PAIR: 0x69...82a2{" "}
+          </p>
         </div>
-      ) : (
+        <div className="flex md:flex-row md:gap-3 w-full md:text-[15px] text-[13px]  justify-between flex-1 px-2">
+        <div className="flex flex-col items-center">
+          <h1 className="text-[#454545] font-semibold md:text-[15px]  ">MCAP</h1>
+          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5  rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+            48.13M
+          </p>
+        </div>
+        <div className="flex flex-col">
+          <h1 className="text-[#454545] font-semibold">LIQUIDITY</h1>
+          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+            1.5M
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-[#454545] font-semibold">SUPPLY</h1>
+          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+            6.9B
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-[#454545] font-semibold">HOLDERS</h1>
+          <p className="bg-[#E1E1E1] text-[#898989] py-2 px-5 rounded-2xl  font-bold hover:cursor-pointer dark:bg-[#454545]">
+            12.8K
+          </p>
+        </div>
+        </div>
+ 
+      </div>
+      <div>
+        <img
+          src="/images/tradeGraph.png"
+          alt="trade graph"
+          className="bg-cover "
+        />
+      </div>
+      <div className="flex flex-row items-center md:gap-5 md:justify-start lg:justify-center">
+        <p className="text-[#898989] font-semibold md:text-2xl text-xl">Highlights</p>
+        <p className="bg-[#E1E1E1] px-6 py-2 text-[#898989]  font-semibold  rounded-2xl dark:bg-[#202020]">
+          {height}
+        </p>
+      </div>
+      <div className="flex flex-row gap-1 relative w-full">
+        <div className="overflow-x-scroll flex flex-row">
+        {timeChanges.map((timeChange) => (
         <div
-          className={`w-full h-[100vh] flex flex-col justify-between items-center fixed top-0  z-[2000] left-0  dark:bg-black bg-white text-black dark:text-white`}
+          key={timeChange.id}
+          className="flex flex-col  items-center justify-center "
+          onMouseEnter={() => setIsHovered({ id: timeChange.id, hovered: true })}
+          onMouseLeave={() => setIsHovered({ id: timeChange.id, hovered: false })}
         >
-          <HeaderMain>
-            <h1 className="text-[#E1E1E1] font-extrabold md:text-4xl text-2xl">
-              Chatr
-            </h1>
-          </HeaderMain>
-          <div className="w-full flex items-center justify-center flex-col">
+          {isHovered?.id === timeChange.id && isHovered.hovered && (
+            <div className="flex flex-col gap-8 bg-white min-w-max border-4 rounded-2xl p-5 absolute bottom-32 z-[1000] dark:bg-[#202020] dark:border-[#333333]">
+              {usersWithVotes.map((userWithVote) => (
+                <div key={userWithVote.id} className="flex flex-row  w-fit items-center gap-[13px]">
+                  <div>
+                    <img src={userWithVote.profile} alt="user profile" className="w-[49px] h-[49px]" />
+                  </div>
+                  <div>
+                    <div className="flex flex-row gap-2 items-center text-[15px]">
+                      <p className="text-[#898989] font-bold ">{userWithVote.name} </p>
+                      <p className="text-[#00FF57] font-semibold ">{userWithVote.votes} upVotes</p>
+                    </div>
+                    <p className="text-[#898989] semi-bold text-[15px]">{userWithVote.msg}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="hover:cursor-pointer ">
             <img
-              src={
-                isDark ? "/images/logoBigDark.png" : "/images/logoBigLight.png"
-              }
-              className="w-[30%] md:w-[30%] max-w-[400px]"
+              src={timeChange.isRight ? "/images/timeGreen.png" : "/images/timeRed.png"}
+              alt=""
             />
-            {loading && <p>Loading</p>}
-            {loading != true && (
-              <p className="md:text-xl text-md">
-                {error == "Network Error"
-                  ? "Something went wrong"
-                  : "No token found with that address"}
-              </p>
-            )}
           </div>
-          <div></div>
+          <p className="text-[#898989] font-bold lg:text-2xl md:text-xl text-sm">{timeChange.time}</p>
         </div>
-      )}
-    </>
+      ))}
+        </div>
+  
+    </div>
+
+    </div>
   );
 };
 

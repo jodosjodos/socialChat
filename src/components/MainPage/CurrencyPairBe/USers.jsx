@@ -1,7 +1,7 @@
 import { FaReply } from "react-icons/fa";
 import { BsTwitterX, BsDiscord } from "react-icons/bs";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa6";
-import { userProfile, users } from "../../../data/user";
+import { userProfile } from "../../../data/user";
 import { useEffect, useState } from "react";
 import {useSelector} from "react-redux"
 import { store } from "../../../redux/store";
