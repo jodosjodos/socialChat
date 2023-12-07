@@ -5,21 +5,23 @@ import { userProfile } from "../../../data/user";
 import { useEffect, useState } from "react";
 import {useSelector} from "react-redux"
 import { store } from "../../../redux/store";
-import { makeComment } from "../../../redux/action/comment";
+import { loadComment, makeComment } from "../../../redux/action/comment";
 import Popup from "../../Popup/Popup";
 function USers() {
   
   const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
 
   const savedTheme = localStorage.getItem("theme");
-  // let loggedInUser = {
-  //   id: 56 ,
-  //   name: "Traderx69",
-  //   votes:'54',
-  //   time: "17:31",
-  //   profile: "/images/profile1.png",
-  // }
-  let loggedInUser=null
+  let loggedInUser = {
+    id: 56 ,
+    name: "Traderx69",
+    votes:'54',
+    profile: "/images/profile1.png",
+  }
+  useEffect(() => {
+    store.dispatch(loadComment(loggedInUser))
+  },[])
+  // let loggedInUser=null
 
   const isDarkTheme = savedTheme === "dark";
   const { comments } = useSelector((state) => state.comments)
@@ -28,9 +30,7 @@ function USers() {
   const handleComment = () => {
     loggedInUser!=null?store.dispatch(makeComment({ ...loggedInUser, msg: comment })):setLoginPopup(true)
   }
-  useEffect(() => {
-    console.log("comment updated")
-  },[])
+
   
   //  use margin for solution for making user div to  be fit to image and time divv
   return (
