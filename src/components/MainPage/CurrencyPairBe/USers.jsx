@@ -30,17 +30,25 @@ function USers() {
   
   useEffect(() => {
     store.dispatch(loadComment(loggedInUser))
+    handleScrollToBottom()
   }, [store.dispatch])
   
- 
+  function handleScrollToBottom() {
+    const commentContainer = document.getElementById("comment-container");
+    if (commentContainer) {
+      commentContainer.scrollTop = commentContainer.scrollHeight;
+     
+    }
+  }
 
   const isDarkTheme = savedTheme === "dark";
 
   const [loginPopup,setLoginPopup]=useState(false)
   const [comment,setComment]=useState("")
-  const handleComment = () => {
-    store.dispatch(makeComment({ ...loggedInUser, msg: comment }))
+  const handleComment = async() => {
+    await store.dispatch(makeComment({ ...loggedInUser, msg: comment }))
     setComment('')
+    handleScrollToBottom()
   }
   
 console.log(modifiedComments)
@@ -48,7 +56,7 @@ console.log(modifiedComments)
   //  use margin for solution for making user div to  be fit to image and time divv
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] dark:bg-[#202020] ">
-      <div className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
+      <div id="comment-container" className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
         {modifiedComments.length>0&&modifiedComments.map((user) => (
           <div
             key={user.id}
