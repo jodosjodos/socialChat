@@ -61,7 +61,12 @@ console.log(modifiedComments)
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] dark:bg-[#202020] ">
       <div id="comment-container" className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
-        {loading&&<p className=" text-center w-full font-[600px] dark:text-white ">Loading ...</p>}
+        {loading &&
+          <div className="flex items-center justify-center">
+          
+            <div className="border-t-4 border-gray-300  border-4 border-t-blue-500 border-solid rounded-full h-10 w-10 animate-spin"></div>
+          </div>
+        }
         {modifiedComments.length>0&&modifiedComments.map((user) => (
           <div
             key={user.id}
