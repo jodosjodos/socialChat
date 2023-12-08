@@ -20,12 +20,12 @@ function USers() {
     profile: "/images/profile1.png",
   }
   function flattenArray(arr) {
-    return arr!=null?arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []):[];
+    return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []);
   }
   
   // Example usage:
  
-  const modifiedComments = flattenArray(comments);
+  const modifiedComments =flattenArray(comments);
  console.log(modifiedComments)
   
   useEffect(() => {
@@ -33,16 +33,16 @@ function USers() {
   }, [store.dispatch])
   
  
-  // let loggedInUser=null
-  console.log(comments)
+
   const isDarkTheme = savedTheme === "dark";
 
   const [loginPopup,setLoginPopup]=useState(false)
   const [comment,setComment]=useState("")
   const handleComment = () => {
-    loggedInUser!=null?store.dispatch(makeComment({ ...loggedInUser, msg: comment })):setLoginPopup(true)
+   store.dispatch(makeComment({ ...loggedInUser, msg: comment }))
   }
-
+  
+console.log(modifiedComments)
   
   //  use margin for solution for making user div to  be fit to image and time divv
   return (
@@ -73,7 +73,7 @@ function USers() {
                       </div>
                       <div>
                         <h1 className="text-[#898989] font-bold text-2xl">
-                          {user.name}
+                          {user.comment.name}
                         </h1>
                         <h1 className="text-[#00FF57] font-semibold">
                           {user.votes} UpVotes | {user.comments} comments
