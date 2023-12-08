@@ -29,8 +29,12 @@ function USers() {
  console.log(modifiedComments)
   
   useEffect(() => {
-    store.dispatch(loadComment(loggedInUser))
-    handleScrollToBottom()
+    const fetch=async  () => {
+      await store.dispatch(loadComment(loggedInUser))
+      handleScrollToBottom()
+    }
+    fetch()
+
   }, [store.dispatch])
   
   function handleScrollToBottom() {
