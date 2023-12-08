@@ -5,6 +5,8 @@ import losersReducer from "./reducer/losers";
 import hotPairsReducer from "./reducer/hotPairs";
 import tokenReducer from "./reducer/token";
 import marketReducer from "./reducer/market";
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 export const store = configureStore({
   reducer: {
     comments: commentReducer,
@@ -14,4 +16,4 @@ export const store = configureStore({
     tokens: tokenReducer,
     symbol:marketReducer
   },
-});
+},applyMiddleware(thunk));
