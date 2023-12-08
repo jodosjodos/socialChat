@@ -6,7 +6,7 @@ const CurrencyPairBeingUsed = () => {
   const [isHovered,setIsHovered]=useState({id:'',hovered:false})
 
   const height = "15m";
-  console.log('is')
+
   //  use margin to adjust  border to fit similar to image and user
   return (
     <div className="flex w-full flex-col gap-3 object-cover border-b-4 mr-28 pb-5 relative">
