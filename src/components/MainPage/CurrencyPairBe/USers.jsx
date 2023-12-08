@@ -12,7 +12,7 @@ function USers() {
   const [isHovered, setIsHovered] = useState({ id: "", hovered: false });
 
   const savedTheme = localStorage.getItem("theme");
-  const { comments } = useSelector((state) => state.comments)
+  const { comments,loading } = useSelector((state) => state.comments)
   let loggedInUser = {
     id: 56 ,
     name: "Traderx69",
@@ -61,6 +61,7 @@ console.log(modifiedComments)
   return (
     <div className="flex flex-col gap-5  lg:mx-32 md:mx-25 mx-3    rounded-2xl   p-5 bg-[#E1E1E1] dark:bg-[#202020] ">
       <div id="comment-container" className="flex flex-col  max-h-[500px] min-h-fit overflow-y-scroll   gap-12">
+        {loading&&<p className=" text-center w-full font-[600px] dark:text-white ">Loading ...</p>}
         {modifiedComments.length>0&&modifiedComments.map((user) => (
           <div
             key={user.id}
