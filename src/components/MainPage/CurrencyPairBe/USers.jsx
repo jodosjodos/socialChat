@@ -39,7 +39,8 @@ function USers() {
   const [loginPopup,setLoginPopup]=useState(false)
   const [comment,setComment]=useState("")
   const handleComment = () => {
-   store.dispatch(makeComment({ ...loggedInUser, msg: comment }))
+    store.dispatch(makeComment({ ...loggedInUser, msg: comment }))
+    setComment('')
   }
   
 console.log(modifiedComments)
@@ -173,6 +174,7 @@ console.log(modifiedComments)
           name="message"
           id="message"
           placeholder="Type your message"
+          value={comment}
           className="bg-[#898989] text-white placeholder:text-white outline-none w-[85%] px-3 py-4 rounded-2xl font-semibold dark:placeholder:text-[#636363] dark:text-[#636363]"
         onChange={(e)=>setComment(e.target.value)}/>
         <button className="w-[14%] min-w-[60px] bg-[#898989] text-white font-semibold rounded-2xl  dark:text-black" onClick={handleComment}>
